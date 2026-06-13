@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apostila Inteligente de PEF — USP</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="active">Início</a>
+        <a href="cap1.html">Capítulos</a>
+      </nav>
+    </div>
+    <!-- Barra de leitura de página -->
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="home-main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h2 class="hero-title">Bem-vinda à Apostila Inteligente de PEF</h2>
+      <p class="hero-desc">
+        Material didático interativo desenvolvido pela Universidade de São Paulo.
+        Acompanhe seu progresso, estude os capítulos e teste seus conhecimentos
+        com quizzes gerados por Inteligência Artificial.
+      </p>
+    </section>
+
+    <!-- DASHBOARD DE PROGRESSO -->
+    <section class="progress-dashboard">
+      <h3 class="section-title">📊 Seu Progresso</h3>
+
+      <div class="progress-overview">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="globalProgressBar"></div>
+          </div>
+          <span class="progress-percent" id="globalProgressPercent">0%</span>
+        </div>
+        <p class="progress-label" id="globalProgressLabel">0 de 0 tópicos concluídos</p>
+      </div>
+
+      <div class="chapters-progress" id="chaptersProgress">
+        <!-- Gerado por JS -->
+      </div>
+    </section>
+
+    <!-- SUMÁRIO -->
+    <section class="summary">
+      <h3 class="section-title">📚 Sumário</h3>
+      <div class="chapters-grid" id="chaptersGrid">
+        <!-- Gerado por JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

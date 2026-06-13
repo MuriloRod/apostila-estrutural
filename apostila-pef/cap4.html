@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capítulo 4 — Apostila PEF</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Início</a>
+        <a href="cap1.html">Capítulos</a>
+      </nav>
+    </div>
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <div class="chapter-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-progress">
+        <h4>Seu Progresso</h4>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="globalProgressBar"></div>
+        </div>
+        <p id="globalProgressLabel">0 de 0 tópicos</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-title">Capítulos</p>
+        <ul id="sidebarChapterList"></ul>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <article class="chapter-content">
+
+      <div class="chapter-header">
+        <span class="chapter-tag">Capítulo 4</span>
+        <h2 class="chapter-title">Apoios</h2>
+        <p class="chapter-intro">
+          <strong>Apoios</strong> são dispositivos pontuais que vinculam a estrutura a outros
+          sistemas estruturais, restringindo seus movimentos. Eles introduzem
+          <em>esforços reativos</em> (reações) que mantêm a estrutura em equilíbrio.
+          O número de reações mobilizadas é sempre igual ao número de vínculos impostos
+          ao movimento do ponto.
+        </p>
+      </div>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.1 — Conceitos Fundamentais               -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-1" data-topic-id="cap4-1" data-chapter="4">
+        <h3 class="topic-title">4.1 — Conceitos Fundamentais</h3>
+
+        <p>
+          Toda estrutura precisa ser vinculada ao solo ou a outra estrutura por meio de
+          <strong>apoios</strong>. Esses dispositivos restringem determinados movimentos
+          (deslocamentos e/ou rotações) do ponto de aplicação, gerando as chamadas
+          <strong>reações de apoio</strong>.
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          <strong>Princípio fundamental:</strong> O número de reações mobilizadas é
+          sempre igual ao número de vínculos impostos ao movimento do ponto.
+          <ul style="margin:0.5rem 0 0 1rem;">
+            <li>Vínculos de <em>deslocamento</em> → mobilizam <strong>forças</strong> reativas</li>
+            <li>Vínculos de <em>rotação</em> → mobilizam <strong>momentos</strong> reativos</li>
+          </ul>
+        </blockquote>
+
+        <p>
+          A decomposição das reações em componentes ortogonais justifica-se quando a direção
+          da reação resultante é desconhecida a priori. Nesse caso, trabalha-se com as componentes
+          $R_x$ e $R_y$ em vez de tentar determinar diretamente a resultante.
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Tipo de Vínculo</th>
+              <th style="padding:10px; border:1px solid #ccd;">Movimento Restringido</th>
+              <th style="padding:10px; border:1px solid #ccd;">Reação Gerada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculo de deslocamento</td>
+              <td style="padding:10px; border:1px solid #ccd;">Translação em uma direção</td>
+              <td style="padding:10px; border:1px solid #ccd;">Força reativa $R$</td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculo de rotação</td>
+              <td style="padding:10px; border:1px solid #ccd;">Rotação em torno de um eixo</td>
+              <td style="padding:10px; border:1px solid #ccd;">Momento reativo $M$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-1', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-1')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-1"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.2 — Apoio Simples (Articulação Móvel)    -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-2" data-topic-id="cap4-2" data-chapter="4">
+        <h3 class="topic-title">4.2 — Apoio Simples (Articulação Móvel)</h3>
+
+        <p>
+          O <strong>apoio simples</strong>, também chamado de <em>articulação móvel</em>,
+          impede o deslocamento na direção <strong>normal</strong> a um plano estabelecido,
+          mas permite:
+        </p>
+        <ul>
+          <li>Deslocamento <em>paralelo</em> a esse plano;</li>
+          <li>Rotação do ponto de aplicação.</li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+           <strong>Vínculos:</strong> 1 &nbsp;|&nbsp;
+           <strong>Reações:</strong> 1 força — $R$ perpendicular ao plano de apoio
+        </blockquote>
+
+        <!-- FIGURAS SVG — Apoio Simples -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <!-- Modelo físico: pino sobre rolos -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Modelo físico: pino sobre rolos</em>
+            </p>
+            <svg width="140" height="175" viewBox="0 0 140 175" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barra/estrutura -->
+              <line x1="20" y1="35" x2="120" y2="35" stroke="black" stroke-width="3"/>
+              <!-- Pino central -->
+              <circle cx="70" cy="35" r="10" fill="white" stroke="black" stroke-width="2"/>
+              <!-- Triângulo de apoio -->
+              <polygon points="70,45 40,95 100,95" fill="none" stroke="black" stroke-width="2"/>
+              <!-- Rolos -->
+              <circle cx="50" cy="104" r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <circle cx="70" cy="104" r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <circle cx="90" cy="104" r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <!-- Linha de base -->
+              <line x1="20" y1="114" x2="120" y2="114" stroke="black" stroke-width="2"/>
+              <!-- Hachuras na base -->
+              <line x1="20" y1="114" x2="5"   y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="114" x2="20"  y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="50" y1="114" x2="35"  y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="65" y1="114" x2="50"  y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="80" y1="114" x2="65"  y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="95" y1="114" x2="80"  y2="129" stroke="black" stroke-width="1.5"/>
+              <line x1="110" y1="114" x2="95" y2="129" stroke="black" stroke-width="1.5"/>
+              <!-- Seta de reação (de baixo para cima) -->
+              <line x1="70" y1="160" x2="70" y2="50" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="70,42 63,58 77,58" fill="#1a6ef5"/>
+              <text x="78" y="115" font-size="14" fill="#1a6ef5" font-style="italic">R</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Pino sobre rolos</p>
+          </div>
+
+          <!-- Símbolo estrutural padrão -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Símbolo estrutural</em>
+            </p>
+            <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barra -->
+              <line x1="20" y1="30" x2="120" y2="30" stroke="black" stroke-width="3"/>
+              <!-- Triângulo simbólico -->
+              <polygon points="70,30 35,90 105,90" fill="none" stroke="black" stroke-width="2"/>
+              <!-- Linha de apoio -->
+              <line x1="20" y1="95" x2="120" y2="95" stroke="black" stroke-width="2"/>
+              <!-- Hachuras -->
+              <line x1="20"  y1="95" x2="5"   y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="35"  y1="95" x2="20"  y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="50"  y1="95" x2="35"  y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="65"  y1="95" x2="50"  y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="80"  y1="95" x2="65"  y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="95"  y1="95" x2="80"  y2="110" stroke="black" stroke-width="1.5"/>
+              <line x1="110" y1="95" x2="95"  y2="110" stroke="black" stroke-width="1.5"/>
+              <!-- Seta de reação -->
+              <line x1="70" y1="145" x2="70" y2="40" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="70,32 63,48 77,48" fill="#1a6ef5"/>
+              <text x="78" y="100" font-size="14" fill="#1a6ef5" font-style="italic">R</text>
+              <!-- Label 1 vínculo -->
+              <text x="108" y="65" font-size="11" fill="#888">1 vínculo</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Representação simbólica</p>
+          </div>
+
+          <!-- Apoio simples horizontal (parede) -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Apoio na parede (horizontal)</em>
+            </p>
+            <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Parede vertical -->
+              <line x1="30" y1="10" x2="30" y2="150" stroke="black" stroke-width="2.5"/>
+              <line x1="30" y1="20"  x2="15" y2="35"  stroke="black" stroke-width="1.5"/>
+              <line x1="30" y1="40"  x2="15" y2="55"  stroke="black" stroke-width="1.5"/>
+              <line x1="30" y1="60"  x2="15" y2="75"  stroke="black" stroke-width="1.5"/>
+              <line x1="30" y1="80"  x2="15" y2="95"  stroke="black" stroke-width="1.5"/>
+              <line x1="30" y1="100" x2="15" y2="115" stroke="black" stroke-width="1.5"/>
+              <line x1="30" y1="120" x2="15" y2="135" stroke="black" stroke-width="1.5"/>
+              <!-- Triângulo rotacionado (apoio horizontal) -->
+              <polygon points="30,80 85,50 85,110" fill="none" stroke="black" stroke-width="2"/>
+              <!-- Pino -->
+              <circle cx="30" cy="80" r="8" fill="white" stroke="black" stroke-width="2"/>
+              <!-- Rolos -->
+              <circle cx="94" cy="58"  r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <circle cx="94" cy="80"  r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <circle cx="94" cy="102" r="9" fill="#aaa" stroke="black" stroke-width="1.5"/>
+              <!-- Linha vertical de apoio -->
+              <line x1="104" y1="20" x2="104" y2="140" stroke="black" stroke-width="2"/>
+              <!-- Reação horizontal (da direita para esquerda) -->
+              <line x1="130" y1="80" x2="40" y2="80" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="32,80 48,73 48,87" fill="#1a6ef5"/>
+              <text x="108" y="75" font-size="14" fill="#1a6ef5" font-style="italic">R</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Apoio em parede vertical</p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <p>
+          Modelos físicos típicos do apoio simples incluem:
+          <strong>pino sobre rolos</strong> e <strong>rolo simples</strong>.
+          Em pontes, por exemplo, uma extremidade da viga repousa sobre rolos para permitir
+          dilatação térmica, enquanto a outra é fixa.
+        </p>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-2', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-2')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-2"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.3 — Apoio Fixo (Articulação Fixa)        -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-3" data-topic-id="cap4-3" data-chapter="4">
+        <h3 class="topic-title">4.3 — Apoio Fixo (Articulação Fixa)</h3>
+
+        <p>
+          O <strong>apoio fixo</strong>, ou <em>articulação fixa</em>, impede
+          <strong>qualquer deslocamento</strong> do ponto de aplicação, mas
+          <strong>permite rotação</strong>. Por isso mobiliza duas reações de força.
+        </p>
+        <ul>
+          <li>Impede deslocamento horizontal → reação $R_x$</li>
+          <li>Impede deslocamento vertical → reação $R_y$</li>
+          <li>Permite rotação → <strong>sem</strong> momento reativo</li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+           <strong>Vínculos:</strong> 2 &nbsp;|&nbsp;
+           <strong>Reações:</strong> 2 forças — $R_x$ e $R_y$
+          (decomposição justificada pois a direção da resultante é desconhecida a priori)
+        </blockquote>
+
+        <!-- FIGURAS SVG — Apoio Fixo -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <!-- Modelo físico -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Modelo físico: articulação fixa</em>
+            </p>
+            <svg width="160" height="185" viewBox="0 0 160 185" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barra -->
+              <line x1="20" y1="30" x2="140" y2="30" stroke="black" stroke-width="3"/>
+              <!-- Pino -->
+              <circle cx="80" cy="30" r="10" fill="white" stroke="black" stroke-width="2"/>
+              <!-- Triângulo -->
+              <polygon points="80,40 45,100 115,100" fill="none" stroke="black" stroke-width="2"/>
+              <!-- Base dupla (fixa, sem rolos) -->
+              <line x1="30" y1="100" x2="130" y2="100" stroke="black" stroke-width="2.5"/>
+              <line x1="30" y1="108" x2="130" y2="108" stroke="black" stroke-width="2.5"/>
+              <!-- Hachuras -->
+              <line x1="30"  y1="108" x2="15"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="45"  y1="108" x2="30"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="60"  y1="108" x2="45"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="75"  y1="108" x2="60"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="90"  y1="108" x2="75"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="105" y1="108" x2="90"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="120" y1="108" x2="105" y2="123" stroke="black" stroke-width="1.5"/>
+              <!-- Reação Rx (horizontal, da esquerda) -->
+              <line x1="10" y1="65" x2="70" y2="65" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="78,65 62,58 62,72" fill="#1a6ef5"/>
+              <text x="12" y="60" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Reação Ry (vertical, de baixo) -->
+              <line x1="80" y1="170" x2="80" y2="50" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="80,42 73,58 87,58" fill="#e03030"/>
+              <text x="88" y="155" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Articulação fixa</p>
+          </div>
+
+          <!-- Símbolo estrutural -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Símbolo estrutural</em>
+            </p>
+            <svg width="165" height="185" viewBox="0 0 165 185" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barra -->
+              <line x1="20" y1="28" x2="140" y2="28" stroke="black" stroke-width="3"/>
+              <!-- Pino -->
+              <circle cx="80" cy="28" r="10" fill="white" stroke="black" stroke-width="2"/>
+              <!-- Triângulo -->
+              <polygon points="80,38 45,95 115,95" fill="none" stroke="black" stroke-width="2"/>
+              <!-- Base sólida cinza -->
+              <rect x="28" y="95" width="104" height="10" fill="#ccc" stroke="black" stroke-width="1.5"/>
+              <!-- Hachuras -->
+              <line x1="28"  y1="105" x2="13"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="43"  y1="105" x2="28"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="58"  y1="105" x2="43"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="73"  y1="105" x2="58"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="88"  y1="105" x2="73"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="103" y1="105" x2="88"  y2="120" stroke="black" stroke-width="1.5"/>
+              <line x1="118" y1="105" x2="103" y2="120" stroke="black" stroke-width="1.5"/>
+              <!-- Rx -->
+              <line x1="5" y1="62" x2="65" y2="62" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="73,62 57,55 57,69" fill="#1a6ef5"/>
+              <text x="8" y="57" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Ry -->
+              <line x1="80" y1="170" x2="80" y2="48" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="80,40 73,56 87,56" fill="#e03030"/>
+              <text x="88" y="155" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Label -->
+              <text x="118" y="78" font-size="11" fill="#888">2 vínculos</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Representação simbólica</p>
+          </div>
+
+          <!-- Diagrama de corpo livre -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Diagrama de corpo livre</em>
+            </p>
+            <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ponto de apoio -->
+              <circle cx="80" cy="80" r="7" fill="black"/>
+              <!-- Rx (horizontal, da esquerda) -->
+              <line x1="10" y1="80" x2="72" y2="80" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="80,80 64,73 64,87" fill="#1a6ef5"/>
+              <text x="12" y="72" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Ry (vertical, de baixo) -->
+              <line x1="80" y1="150" x2="80" y2="88" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="80,80 73,96 87,96" fill="#e03030"/>
+              <text x="88" y="145" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Resultante (diagonal tracejada) -->
+              <line x1="15" y1="145" x2="73" y2="87" stroke="#8833cc" stroke-width="1.8"
+                stroke-dasharray="5,4"/>
+              <polygon points="80,80 66,88 74,100" fill="#8833cc"/>
+              <text x="10" y="158" font-size="11" fill="#8833cc" font-style="italic">R (resultante)</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Decomposição das reações</p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <p>
+          A decomposição de $R$ em $R_x$ e $R_y$ é necessária porque, a priori,
+          não conhecemos a direção da reação resultante — ela depende do carregamento aplicado
+          e só é determinada após a resolução do sistema de equilíbrio.
+        </p>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-3', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-3')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-3"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.4 — Engaste (Engastamento)               -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-4" data-topic-id="cap4-4" data-chapter="4">
+        <h3 class="topic-title">4.4 — Engaste (Engastamento)</h3>
+
+        <p>
+          O <strong>engaste</strong> é o apoio mais restritivo. Ele impede
+          <strong>qualquer deslocamento</strong> e <strong>qualquer rotação</strong>
+          do ponto de aplicação, mobilizando três reações.
+        </p>
+        <ul>
+          <li>Impede deslocamento horizontal → reação $R_x$</li>
+          <li>Impede deslocamento vertical → reação $R_y$</li>
+          <li>Impede rotação → momento reativo $M$</li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+           <strong>Vínculos:</strong> 3 &nbsp;|&nbsp;
+           <strong>Reações:</strong> 2 forças ($R_x$, $R_y$) + 1 momento ($M$)
+        </blockquote>
+
+        <!-- FIGURAS SVG — Engaste -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:center;">
+
+          <!-- Engaste na parede esquerda -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Engaste em parede vertical</em>
+            </p>
+            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Parede -->
+              <rect x="5" y="10" width="35" height="140" fill="#ddd" stroke="none"/>
+              <line x1="40" y1="10" x2="40" y2="150" stroke="black" stroke-width="2.5"/>
+              <line x1="40" y1="20"  x2="22" y2="38"  stroke="black" stroke-width="1.5"/>
+              <line x1="40" y1="40"  x2="22" y2="58"  stroke="black" stroke-width="1.5"/>
+              <line x1="40" y1="60"  x2="22" y2="78"  stroke="black" stroke-width="1.5"/>
+              <line x1="40" y1="80"  x2="22" y2="98"  stroke="black" stroke-width="1.5"/>
+              <line x1="40" y1="100" x2="22" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="40" y1="120" x2="22" y2="138" stroke="black" stroke-width="1.5"/>
+              <!-- Barra engastada -->
+              <rect x="40" y="68" width="145" height="24" fill="#bbb" stroke="black" stroke-width="2"/>
+              <!-- Rx -->
+              <line x1="5" y1="80" x2="38" y2="80" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="46,80 30,73 30,87" fill="#1a6ef5"/>
+              <text x="5" y="68" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Ry -->
+              <line x1="110" y1="150" x2="110" y2="94" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="110,86 103,102 117,102" fill="#e03030"/>
+              <text x="118" y="148" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Momento M (arco) -->
+              <path d="M 60,58 A 22,22 0 0,1 82,36" stroke="#8833cc" stroke-width="2.5"
+                fill="none" marker-end="url(#arrow-purple)"/>
+              <defs>
+                <marker id="arrow-purple" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <text x="85" y="42" font-size="14" fill="#8833cc" font-style="italic">M</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Engaste em parede vertical</p>
+          </div>
+
+          <!-- Engaste na base (pilar) -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Engaste na base (pilar)</em>
+            </p>
+            <svg width="180" height="200" viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Base -->
+              <rect x="10" y="148" width="160" height="35" fill="#ddd" stroke="none"/>
+              <line x1="10" y1="148" x2="170" y2="148" stroke="black" stroke-width="2.5"/>
+              <line x1="15"  y1="148" x2="0"   y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="35"  y1="148" x2="20"  y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="55"  y1="148" x2="40"  y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="75"  y1="148" x2="60"  y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="95"  y1="148" x2="80"  y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="115" y1="148" x2="100" y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="135" y1="148" x2="120" y2="163" stroke="black" stroke-width="1.5"/>
+              <line x1="155" y1="148" x2="140" y2="163" stroke="black" stroke-width="1.5"/>
+              <!-- Pilar -->
+              <rect x="75" y="10" width="30" height="138" fill="#bbb" stroke="black" stroke-width="2"/>
+              <!-- Rx -->
+              <line x1="10" y1="80" x2="73" y2="80" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="81,80 65,73 65,87" fill="#1a6ef5"/>
+              <text x="12" y="72" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Ry -->
+              <line x1="90" y1="190" x2="90" y2="150" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="90,142 83,158 97,158" fill="#e03030"/>
+              <text x="98" y="188" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Momento M -->
+              <path d="M 55,130 A 35,35 0 0,1 90,95" stroke="#8833cc" stroke-width="2.5"
+                fill="none" marker-end="url(#arrow-purple2)"/>
+              <defs>
+                <marker id="arrow-purple2" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <text x="94" y="98" font-size="14" fill="#8833cc" font-style="italic">M</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Engaste na base de pilar</p>
+          </div>
+
+          <!-- Esquema das 3 reações -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Esquema das 3 reações</em>
+            </p>
+            <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ponto -->
+              <circle cx="90" cy="90" r="8" fill="black"/>
+              <!-- Rx -->
+              <line x1="10" y1="90" x2="81" y2="90" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="89,90 73,83 73,97" fill="#1a6ef5"/>
+              <text x="12" y="82" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Ry -->
+              <line x1="90" y1="170" x2="90" y2="99" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="90,91 83,107 97,107" fill="#e03030"/>
+              <text x="98" y="165" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Momento M (arco 270°) -->
+              <path d="M 130,90 A 40,40 0 1,0 90,50" stroke="#8833cc" stroke-width="2.5"
+                fill="none" marker-end="url(#arrow-purple3)"/>
+              <defs>
+                <marker id="arrow-purple3" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <text x="133" y="86" font-size="14" fill="#8833cc" font-style="italic">M</text>
+              <text x="112" y="22" font-size="11" fill="#888">3 vínculos</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">$R_x$, $R_y$ e $M$ reativos</p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Atenção:</strong> Uma estrutura engastada em uma extremidade e livre na outra
+          (viga em balanço) é <strong>isostática</strong> — as 3 equações de equilíbrio do plano
+          ($\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$) são suficientes para determinar as
+          3 reações do engaste.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-4', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-4')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-4"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.5 — Tabela Resumo dos Apoios             -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-5" data-topic-id="cap4-5" data-chapter="4">
+        <h3 class="topic-title">4.5 — Tabela Comparativa dos Apoios Planos</h3>
+
+        <p>
+          A tabela a seguir resume os três tipos básicos de apoio no plano,
+          suas características e reações mobilizadas:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#4f8ef7; color:white;">
+              <th style="padding:12px; border:1px solid #3a7be0;">Tipo</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Nome</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Vínculos</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Reações</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Movimentos Permitidos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f9fbff;">
+              <td style="padding:10px; border:1px solid #ccd;">
+                <strong>Simples</strong><br/>
+                <span style="font-size:0.8rem; color:#666;">(articulação móvel)</span>
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">Pino sobre rolos / Rolo</td>
+              <td style="padding:10px; border:1px solid #ccd;">1</td>
+              <td style="padding:10px; border:1px solid #ccd;">$R$ (⊥ ao plano)</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ✅ Translação paralela<br/>✅ Rotação
+              </td>
+            </tr>
+            <tr style="background:#fff;">
+              <td style="padding:10px; border:1px solid #ccd;">
+                <strong>Fixo</strong><br/>
+                <span style="font-size:0.8rem; color:#666;">(articulação fixa)</span>
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">Pino fixo / Rótula</td>
+              <td style="padding:10px; border:1px solid #ccd;">2</td>
+              <td style="padding:10px; border:1px solid #ccd;">$R_x$ e $R_y$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ❌ Translação (qualquer dir.)<br/>✅ Rotação
+              </td>
+            </tr>
+            <tr style="background:#f9fbff;">
+              <td style="padding:10px; border:1px solid #ccd;">
+                <strong>Engaste</strong><br/>
+                <span style="font-size:0.8rem; color:#666;">(engastamento)</span>
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">Engastamento rígido</td>
+              <td style="padding:10px; border:1px solid #ccd;">3</td>
+              <td style="padding:10px; border:1px solid #ccd;">$R_x$, $R_y$ e $M$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ❌ Translação (qualquer dir.)<br/>❌ Rotação
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-5', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-5')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-5"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 4.6 — Representação Tridimensional         -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap4-6" data-topic-id="cap4-6" data-chapter="4">
+        <h3 class="topic-title">4.6 — Representação Tridimensional e Engastes Móveis</h3>
+
+        <p>
+          Na representação de apoios de <strong>estruturas tridimensionais</strong>,
+          uma combinação muito maior de vínculos é possível. A prática corrente consiste em:
+        </p>
+        <ul>
+          <li>
+            Indicar os <strong>vínculos de deslocamento</strong> por pequenas
+            <em>barras bi-articuladas</em> na direção vinculada;
+          </li>
+          <li>
+            Indicar os <strong>vínculos de rotação</strong> por ângulos representando
+            os planos vinculados.
+          </li>
+        </ul>
+
+        <p>
+          Combinações de vínculos originam outros tipos de apoio, como os
+          <strong>engastes móveis</strong>:
+        </p>
+
+        <!-- FIGURAS SVG — Engastes Móveis -->
+        <div style="display:flex; flex-wrap:wrap; gap:2.5rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <!-- (a) Engaste móvel longitudinal -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>(a) Engaste móvel — direção longitudinal</em>
+            </p>
+            <svg width="210" height="175" viewBox="0 0 210 175" xmlns="http://www.w3.org/2000/svg">
+              <!-- Parede -->
+              <rect x="5" y="15" width="32" height="145" fill="#ddd"/>
+              <line x1="37" y1="15" x2="37" y2="160" stroke="black" stroke-width="2.5"/>
+              <line x1="37" y1="25"  x2="20" y2="42"  stroke="black" stroke-width="1.5"/>
+              <line x1="37" y1="45"  x2="20" y2="62"  stroke="black" stroke-width="1.5"/>
+              <line x1="37" y1="65"  x2="20" y2="82"  stroke="black" stroke-width="1.5"/>
+              <line x1="37" y1="85"  x2="20" y2="102" stroke="black" stroke-width="1.5"/>
+              <line x1="37" y1="105" x2="20" y2="122" stroke="black" stroke-width="1.5"/>
+              <line x1="37" y1="125" x2="20" y2="142" stroke="black" stroke-width="1.5"/>
+              <!-- Barra horizontal -->
+              <rect x="37" y="75" width="155" height="25" fill="#bbb" stroke="black" stroke-width="2"/>
+              <!-- Rolos na parede (permitem deslizamento longitudinal) -->
+              <circle cx="47" cy="65"  r="10" fill="#888" stroke="black" stroke-width="1.5"/>
+              <circle cx="47" cy="112" r="10" fill="#888" stroke="black" stroke-width="1.5"/>
+              <!-- Ry -->
+              <line x1="100" y1="155" x2="100" y2="102" stroke="#e03030" stroke-width="2.5"/>
+              <polygon points="100,94 93,110 107,110" fill="#e03030"/>
+              <text x="108" y="152" font-size="13" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <!-- Momento M -->
+              <path d="M 58,60 A 28,28 0 0,1 86,32" stroke="#8833cc" stroke-width="2.5"
+                fill="none" marker-end="url(#arrowM-a)"/>
+              <defs>
+                <marker id="arrowM-a" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <text x="88" y="36" font-size="14" fill="#8833cc" font-style="italic">M</text>
+              <!-- Seta livre em x -->
+              <line x1="140" y1="140" x2="185" y2="140" stroke="#22aa44" stroke-width="2"
+                marker-start="url(#arr-left)" marker-end="url(#arr-right)"/>
+              <defs>
+                <marker id="arr-left" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto-start-reverse">
+                  <path d="M0,3 L6,0 L6,6 Z" fill="#22aa44"/>
+                </marker>
+                <marker id="arr-right" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#22aa44"/>
+                </marker>
+              </defs>
+              <text x="142" y="130" font-size="11" fill="#22aa44">livre em x</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Reações: $R_y$ e $M$</p>
+          </div>
+
+          <!-- (b) Engaste móvel transversal -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>(b) Engaste móvel — direção transversal</em>
+            </p>
+            <svg width="200" height="210" viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
+              <!-- Base -->
+              <rect x="15" y="160" width="170" height="32" fill="#ddd"/>
+              <line x1="15" y1="160" x2="185" y2="160" stroke="black" stroke-width="2.5"/>
+              <line x1="20"  y1="160" x2="5"   y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="40"  y1="160" x2="25"  y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="60"  y1="160" x2="45"  y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="80"  y1="160" x2="65"  y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="100" y1="160" x2="85"  y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="120" y1="160" x2="105" y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="140" y1="160" x2="125" y2="175" stroke="black" stroke-width="1.5"/>
+              <line x1="160" y1="160" x2="145" y2="175" stroke="black" stroke-width="1.5"/>
+              <!-- Pilar -->
+              <rect x="85" y="15" width="30" height="145" fill="#bbb" stroke="black" stroke-width="2"/>
+              <!-- Rolos horizontais na base -->
+              <circle cx="65"  cy="170" r="10" fill="#888" stroke="black" stroke-width="1.5"/>
+              <circle cx="135" cy="170" r="10" fill="#888" stroke="black" stroke-width="1.5"/>
+              <!-- Rx -->
+              <line x1="15" y1="90" x2="83" y2="90" stroke="#1a6ef5" stroke-width="2.5"/>
+              <polygon points="91,90 75,83 75,97" fill="#1a6ef5"/>
+              <text x="17" y="82" font-size="13" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <!-- Momento M -->
+              <path d="M 60,140 A 40,40 0 0,1 100,100" stroke="#8833cc" stroke-width="2.5"
+                fill="none" marker-end="url(#arrowM-b)"/>
+              <defs>
+                <marker id="arrowM-b" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <text x="104" y="100" font-size="14" fill="#8833cc" font-style="italic">M</text>
+              <!-- Seta livre em y -->
+              <line x1="158" y1="60" x2="158" y2="130" stroke="#22aa44" stroke-width="2"
+                marker-start="url(#arr-up)" marker-end="url(#arr-down)"/>
+              <defs>
+                <marker id="arr-up" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto-start-reverse">
+                  <path d="M0,3 L6,0 L6,6 Z" fill="#22aa44"/>
+                </marker>
+                <marker id="arr-down" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#22aa44"/>
+                </marker>
+              </defs>
+              <text x="162" y="100" font-size="11" fill="#22aa44">livre</text>
+              <text x="162" y="113" font-size="11" fill="#22aa44">em y</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">Reações: $R_x$ e $M$</p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Resumo dos engastes móveis:</strong>
+          <ul style="margin:0.5rem 0 0 1rem;">
+            <li>
+              <strong>Engaste móvel longitudinal</strong>: livre na direção do eixo da barra,
+              fixo na direção transversal e contra rotação.
+              Reações: $R_y$ e $M$ &nbsp;→&nbsp; <strong>2 vínculos</strong>
+            </li>
+            <li>
+              <strong>Engaste móvel transversal</strong>: livre na direção transversal à barra,
+              fixo na direção axial e contra rotação.
+              Reações: $R_x$ e $M$ &nbsp;→&nbsp; <strong>2 vínculos</strong>
+            </li>
+          </ul>
+        </blockquote>
+
+        <!-- Representação Tridimensional (texto + SVGs isométricos simplificados) -->
+        <h4 style="margin-top:1.5rem;">Representação Tridimensional</h4>
+        <p>
+          Na representação 3D, cada vínculo de deslocamento é indicado por uma
+          <em>barra bi-articulada</em> na respectiva direção, e cada vínculo de rotação
+          é representado por um símbolo de plano vinculado:
+        </p>
+
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:center;">
+
+          <!-- Apoio 3D com 3 barras bi-articuladas -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Apoio fixo 3D (3 vínculos de translação)</em>
+            </p>
+            <!-- Projeção isométrica simplificada em SVG -->
+            <svg width="190" height="180" viewBox="0 0 190 180" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ponto central -->
+              <circle cx="95" cy="90" r="7" fill="black"/>
+              <!-- Eixo x (para direita-baixo em isométrico) -->
+              <line x1="95" y1="90" x2="155" y2="120" stroke="#1a6ef5" stroke-width="2.5"/>
+              <circle cx="155" cy="120" r="5" fill="#1a6ef5"/>
+              <text x="160" y="125" font-size="13" fill="#1a6ef5" font-weight="bold">x</text>
+              <!-- Eixo y (para direita-cima em isométrico) -->
+              <line x1="95" y1="90" x2="155" y2="60" stroke="#e03030" stroke-width="2.5"/>
+              <circle cx="155" cy="60" r="5" fill="#e03030"/>
+              <text x="160" y="58" font-size="13" fill="#e03030" font-weight="bold">y</text>
+              <!-- Eixo z (para cima) -->
+              <line x1="95" y1="90" x2="95" y2="20" stroke="#8833cc" stroke-width="2.5"/>
+              <circle cx="95" cy="20" r="5" fill="#8833cc"/>
+              <text x="100" y="18" font-size="13" fill="#8833cc" font-weight="bold">z</text>
+              <!-- Reações (tracejado, sentido oposto) -->
+              <line x1="95" y1="90" x2="35" y2="120" stroke="#1a6ef5" stroke-width="1.5"
+                stroke-dasharray="5,4"/>
+              <text x="10" y="130" font-size="11" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <line x1="95" y1="90" x2="35" y2="60" stroke="#e03030" stroke-width="1.5"
+                stroke-dasharray="5,4"/>
+              <text x="10" y="58" font-size="11" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <line x1="95" y1="90" x2="95" y2="155" stroke="#8833cc" stroke-width="1.5"
+                stroke-dasharray="5,4"/>
+              <text x="100" y="168" font-size="11" fill="#8833cc" font-style="italic">R&#x1D69;</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              3 barras bi-articuladas → 3 reações de força
+            </p>
+          </div>
+
+          <!-- Engaste 3D completo -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Engaste 3D completo (6 vínculos)</em>
+            </p>
+            <svg width="200" height="185" viewBox="0 0 200 185" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ponto central -->
+              <circle cx="95" cy="92" r="7" fill="black"/>
+              <!-- Forças -->
+              <line x1="95" y1="92" x2="155" y2="122" stroke="#1a6ef5" stroke-width="2.5"/>
+              <circle cx="155" cy="122" r="5" fill="#1a6ef5"/>
+              <text x="159" y="127" font-size="11" fill="#1a6ef5" font-style="italic">R&#x2093;</text>
+              <line x1="95" y1="92" x2="155" y2="62" stroke="#e03030" stroke-width="2.5"/>
+              <circle cx="155" cy="62" r="5" fill="#e03030"/>
+              <text x="159" y="60" font-size="11" fill="#e03030" font-style="italic">R&#x1D67;</text>
+              <line x1="95" y1="92" x2="95" y2="22" stroke="#8833cc" stroke-width="2.5"/>
+              <circle cx="95" cy="22" r="5" fill="#8833cc"/>
+              <text x="100" y="20" font-size="11" fill="#8833cc" font-style="italic">R&#x1D69;</text>
+              <!-- Momentos (arcos curvos indicativos) -->
+              <path d="M 118,75 A 26,26 0 0,1 118,112" stroke="#06b6d4" stroke-width="2"
+                fill="none" marker-end="url(#arrowMx)"/>
+              <text x="130" y="95" font-size="11" fill="#06b6d4" font-style="italic">M&#x2093;</text>
+              <defs>
+                <marker id="arrowMx" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#06b6d4"/>
+                </marker>
+              </defs>
+              <path d="M 68,68 A 26,26 0 0,0 68,115" stroke="#f97316" stroke-width="2"
+                fill="none" marker-end="url(#arrowMy)"/>
+              <text x="34" y="95" font-size="11" fill="#f97316" font-style="italic">M&#x1D67;</text>
+              <defs>
+                <marker id="arrowMy" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#f97316"/>
+                </marker>
+              </defs>
+              <path d="M 70,92 A 26,26 0 0,1 120,92" stroke="#16a34a" stroke-width="2"
+                fill="none" marker-end="url(#arrowMz)"/>
+              <text x="88" y="130" font-size="11" fill="#16a34a" font-style="italic">M&#x1D69;</text>
+              <defs>
+                <marker id="arrowMz" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#16a34a"/>
+                </marker>
+              </defs>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              6 vínculos → $R_x$, $R_y$, $R_z$, $M_x$, $M_y$, $M_z$
+            </p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <!-- NAVEGAÇÃO -->
+        <div class="chapter-nav">
+          <a href="cap3.html" class="btn-nav">← Capítulo Anterior</a>
+          <a href="cap5.html" class="btn-nav">Próximo Capítulo →</a>
+        </div>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap4-6', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap4-6')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap4-6"></div>
+      </section>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+

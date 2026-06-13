@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capítulo 3 — Apostila PEF</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Início</a>
+        <a href="cap1.html" class="active">Capítulos</a>
+      </nav>
+    </div>
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <div class="chapter-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-progress">
+        <h4>Seu Progresso</h4>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="globalProgressBar"></div>
+        </div>
+        <p id="globalProgressLabel">0 de 0 tópicos</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-title">Capítulos</p>
+        <ul id="sidebarChapterList">
+          <!-- Gerado por JS -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <article class="chapter-content">
+
+      <div class="chapter-header">
+        <span class="chapter-tag">Capítulo 3</span>
+        <h2 class="chapter-title">Esforços na Estrutura</h2>
+        <p class="chapter-intro">
+          O termo <strong>esforço</strong> é uma designação genérica que abrange as noções de
+          força (concentrada, distribuída sobre linha, de superfície e de volume), momento e tensão.
+          Os esforços que agem sobre uma estrutura podem ser <em>externos</em> ou <em>internos</em>,
+          e sua compreensão é base para toda a análise estrutural em Resistência dos Materiais.
+        </p>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 3.1 — Tipos de Força              -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap3-1" data-topic-id="cap3-1" data-chapter="3">
+        <h3 class="topic-title">3.1 — Tipos de Força</h3>
+
+        <p>
+          Em Mecânica das Estruturas, existem dois tipos fundamentais de força que descrevem
+          a interação entre sólidos:
+        </p>
+
+        <h4>① Forças de Superfície (Forças de Contato)</h4>
+        <p>
+          Atuam nas <strong>superfícies dos sólidos</strong>, decorrendo do contato direto entre eles.
+        </p>
+        <ul>
+          <li>Pressão exercida por um líquido sobre a parede de um reservatório;</li>
+          <li>Forças de atrito entre superfícies em contato;</li>
+          <li>Reações de apoio transmitidas por vinculações externas.</li>
+        </ul>
+
+        <h4>② Forças de Volume (Forças de Massa)</h4>
+        <p>
+          Atuam nas <strong>partículas que compõem o sólido</strong>, sem necessidade de contato
+          direto entre corpos. São proporcionais à massa (ou ao volume) do sólido.
+        </p>
+        <ul>
+          <li>Força gravitacional (peso próprio da estrutura);</li>
+          <li>Forças eletromagnéticas;</li>
+          <li>Forças de inércia em estruturas aceleradas.</li>
+        </ul>
+
+        <h4>③ Forças Idealizadas</h4>
+        <p>
+          A Mecânica também emprega forças <strong>idealizadas</strong>, definidas a partir das
+          resultantes parciais ou totais das anteriores:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Tipo</th>
+              <th style="padding:10px; border:1px solid #ccd;">Descrição</th>
+              <th style="padding:10px; border:1px solid #ccd;">Aplicação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Força distribuída sobre linha</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Força por unidade de comprimento ($\text{kN/m}$), representando forças
+                distribuídas em superfícies estreitas ou volumes alongados.
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Estruturas reticuladas; vigas com carregamento distribuído.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Força concentrada</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Resultante de forças distribuídas em pequenas superfícies ou volumes,
+                aplicada pontualmente.
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Cargas localizadas em vigas, pilares e nós de treliças.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1rem;
+          background:#f5f8ff; margin: 1.25rem 0; border-radius:4px;">
+          💡 <strong>Observação:</strong> As forças idealizadas são obtidas a partir do conceito de
+          <em>esforços mecanicamente equivalentes</em>. A força distribuída sobre linha, em especial,
+          tem grande aplicação nas estruturas reticuladas estudadas na Resistência dos Materiais.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap3-1', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap3-1')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap3-1"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 3.2 — Classificação dos Esforços  -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap3-2" data-topic-id="cap3-2" data-chapter="3">
+        <h3 class="topic-title">3.2 — Classificação dos Esforços</h3>
+
+        <p>
+          Os esforços que agem sobre uma estrutura classificam-se em <strong>externos</strong>
+          e <strong>internos</strong>:
+        </p>
+
+        <h4>Esforços Externos</h4>
+        <p>
+          Decorrem da interação entre a estrutura e os sólidos que a rodeiam.
+          Subdividem-se em:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Tipo</th>
+              <th style="padding:10px; border:1px solid #ccd;">Definição</th>
+              <th style="padding:10px; border:1px solid #ccd;">Exemplos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Ativos</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Esforços aplicados diretamente sobre a estrutura
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Peso próprio, pressão de líquido, efeitos de campo eletromagnético,
+                ações de vento e temperatura
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Reativos (Reações)</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Introduzidos pelos vínculos externos para manter a estrutura em equilíbrio
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Reações de apoio em rótulas, apoios de 1º e 2º gênero, engastamentos
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Esforços Internos</h4>
+        <p>
+          Descrevem a interação entre <strong>partes da mesma estrutura</strong>. Nas estruturas
+          reticuladas, admitem duas representações:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Representação</th>
+              <th style="padding:10px; border:1px solid #ccd;">Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Tensões</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Esforços internos <em>pontuais</em> que descrevem a interação entre partículas
+                do material (nível microscópico)
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Esforços Solicitantes</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Resultantes de força e momento que descrevem a interação no plano da seção
+                transversal (nível macroscópico)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding: 0.75rem 1rem;
+          background:#fffaf0; margin: 1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Importante (H. Britto, 2010):</strong> Os esforços solicitantes são
+          <em>entidades fictícias</em>, espécie de meio-termo entre os esforços externos e as tensões.
+          O que realmente existe são as <strong>tensões</strong>, às quais o material resiste.
+          Os esforços solicitantes foram criados para <strong>facilitar o cálculo estrutural</strong>.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap3-2', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap3-2')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap3-2"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 3.3 — Esforços Solicitantes       -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap3-3" data-topic-id="cap3-3" data-chapter="3">
+        <h3 class="topic-title">3.3 — Esforços Solicitantes</h3>
+
+        <p>
+          Considera-se uma barra em equilíbrio sob esforços externos. Um plano imaginário
+          $\alpha$, perpendicular ao eixo da barra, subdivide-a em duas partes <strong>I</strong>
+          e <strong>II</strong>. Como os esforços externos em I não estão necessariamente
+          equilibrados entre si, evidencia-se a existência de esforços internos transmitidos
+          de II para I.
+        </p>
+
+        <p>
+          As resultantes de força $\vec{R}$ e de momento $\vec{M}$ em relação ao centro de
+          gravidade $G$ da seção são denominadas <strong>esforços solicitantes</strong>
+          na seção transversal.
+        </p>
+
+        <h4>Componentes dos Esforços Solicitantes</h4>
+        <p>
+          Decompondo os vetores $\vec{R}$ e $\vec{M}$ em três direções perpendiculares
+          (uma coincidente com o eixo da barra), obtêm-se as seguintes componentes:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Componente</th>
+              <th style="padding:10px; border:1px solid #ccd;">Símbolo</th>
+              <th style="padding:10px; border:1px solid #ccd;">Descrição e Convenção de Sinal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Força Normal</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$N$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Componente <em>normal</em> à seção transversal.
+                Positiva quando traciona a seção ($N > 0$ = tração; $N < 0$ = compressão).
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Força Cortante</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$V_y,\; V_z$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Componentes <em>tangenciais</em> à seção transversal.
+                Positivas quando tendem a girar a seção no sentido horário.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Momentos Fletores</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$M_y,\; M_z$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Componentes de momento em relação aos eixos $y$ e $z$ passando por $G$.
+                Positivos quando orientados nas direções dos respectivos eixos.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Momento de Torção</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$M_x$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Componente de momento em relação ao eixo da barra.
+                Positivo quando o vetor momento tende a <em>sair</em> da seção transversal.
+                Para seções com dupla simetria, equivale ao momento de torção $T$.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Caso Plano (2D)</h4>
+        <p>
+          No caso plano, os esforços solicitantes reduzem-se a <strong>três componentes</strong>:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+          <ul style="margin:0; padding-left:1.5rem;">
+            <li>$N$ — Força Normal: positiva na <strong>tração</strong></li>
+            <li>$V$ — Força Cortante: positiva no sentido <strong>horário</strong></li>
+            <li>$M$ — Momento Fletor: positivo quando traciona o <strong>lado inferior</strong> da barra</li>
+          </ul>
+        </blockquote>
+
+        <h4>Teorema do Corte (Teorema dos Esforços Solicitantes)</h4>
+        <p>
+          Se o plano imaginário $\alpha$ divide o sólido nas partes I e II, então os esforços
+          solicitantes na seção transversal da parte I são <strong>mecanicamente equivalentes</strong>
+          às resultantes de força e momento dos esforços externos aplicados em II.
+        </p>
+        <p>
+          Pelo princípio da ação e reação, os esforços nas seções opostas são iguais em módulo
+          e de sinais contrários:
+        </p>
+
+        $$\vec{R}^{\,\mathrm{I}} = -\vec{R}^{\,\mathrm{II}} \qquad \text{e} \qquad \vec{M}^{\,\mathrm{I}} = -\vec{M}^{\,\mathrm{II}}$$
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1rem;
+          background:#f5f8ff; margin: 1.25rem 0; border-radius:4px;">
+          💡 <strong>Aplicação prática:</strong> O Teorema do Corte é o fundamento do método
+          das seções, amplamente utilizado para traçar os diagramas de esforços solicitantes
+          ($N$, $V$ e $M$) ao longo de vigas e pórticos.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap3-3', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap3-3')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap3-3"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 3.4 — Tensão                      -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap3-4" data-topic-id="cap3-4" data-chapter="3">
+        <h3 class="topic-title">3.4 — Tensão</h3>
+
+        <h4>Definição — Tensão de Cauchy</h4>
+        <p>
+          Seja $V$ um sólido em equilíbrio, $P$ um ponto qualquer em seu interior e $\alpha$
+          um plano imaginário passando por $P$. Seja $\Delta A$ uma pequena área em torno de $P$
+          contida no plano $\alpha$, sobre a qual atua uma força resultante $\Delta \vec{F}$.
+        </p>
+        <p>A <strong>tensão média</strong> no ponto $P$, no plano $\alpha$ e na área $\Delta A$, é:</p>
+
+        $$\vec{\rho}_m(P,\,\alpha,\,\Delta A) = \frac{\Delta \vec{F}}{\Delta A}$$
+
+        <p>
+          Fazendo $\Delta A \to 0$, define-se o <strong>vetor tensão</strong> (ou tensão de Cauchy)
+          no ponto $P$ e no plano $\alpha$:
+        </p>
+
+        $$\vec{\rho}(P,\,\alpha) = \lim_{\Delta A \to 0} \frac{\Delta \vec{F}}{\Delta A} = \frac{d\vec{F}}{dA}$$
+
+        <blockquote style="border-left:4px solid #f7a84f; padding: 0.75rem 1rem;
+          background:#fffaf0; margin: 1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Atenção:</strong> O vetor tensão depende tanto do ponto $P$ quanto do plano
+          $\alpha$. Como observado na Apostila de Teoria (H. Britto, 2010), a tensão não é grandeza
+          escalar nem vetorial — ela pertence a uma classe mais complexa denominada
+          <strong>grandeza tensorial</strong>. O tensor das tensões $\mathbf{T}$ representa o estado
+          completo de tensão num ponto para todos os planos possíveis.
+        </blockquote>
+
+        <h4>Componentes do Vetor Tensão</h4>
+        <p>
+          Fixado o plano $\alpha$ pelo seu versor normal externo $\hat{n}$, o vetor tensão
+          $\vec{\rho}$ decompõe-se em duas componentes:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Componente</th>
+              <th style="padding:10px; border:1px solid #ccd;">Símbolo</th>
+              <th style="padding:10px; border:1px solid #ccd;">Expressão</th>
+              <th style="padding:10px; border:1px solid #ccd;">Convenção de Sinal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Tensão Normal</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$\sigma$</td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">
+                $\sigma = \vec{\rho} \cdot \hat{n}$
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                $\sigma > 0$ = tração<br/>$\sigma < 0$ = compressão
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Tensão Tangencial (Cisalhamento)</strong></td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">$\tau$</td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center;">
+                $\tau = \sqrt{\|\vec{\rho}\|^2 - \sigma^2}$
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Positiva quando tende a girar o plano no sentido horário (caso plano)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>A relação entre as componentes é expressa por:</p>
+
+        $$\vec{\rho} = \vec{\sigma} + \vec{\tau} \qquad \text{com} \qquad \|\vec{\rho}\|^2 = \sigma^2 + \tau^2$$
+
+        <h4>Unidades de Tensão</h4>
+        <p>
+          A tensão tem unidade de <strong>força por área</strong> ($[F]/[L]^2$).
+          No SI, a unidade é o <strong>Pascal</strong> ($\text{Pa} = \text{N/m}^2$).
+          Na prática da Resistência dos Materiais, usam-se os seguintes múltiplos e conversões:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+          $$1\,\text{MPa} = 0{,}1\,\text{kN/cm}^2 = 1\,\text{N/mm}^2 \approx 10\,\text{kgf/cm}^2$$
+          $$1\,\text{kN/cm}^2 = 10\,\text{MPa} \approx 0{,}1\,\text{tf/cm}^2$$
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap3-4', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap3-4')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap3-4"></div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- TÓPICO 3.5 — Relação entre Esforços Solicitantes e Tensões    -->
+      <!-- ============================================================= -->
+      <section class="topic" id="topic-cap3-5" data-topic-id="cap3-5" data-chapter="3">
+        <h3 class="topic-title">3.5 — Relação entre os Esforços Solicitantes e as Componentes de Tensão</h3>
+
+        <p>
+          Os esforços solicitantes numa seção transversal correspondem às
+          <strong>resultantes de força e momento</strong> das tensões que atuam no plano da seção,
+          expressas em relação ao centro de gravidade $G$.
+        </p>
+
+        <h4>Contribuições Elementares</h4>
+        <p>
+          Para um elemento de área $dA$ na seção transversal, com coordenadas $(y, z)$ em relação
+          a $G$, as contribuições elementares de cada esforço solicitante são:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+
+          <p><strong>Contribuições de força:</strong></p>
+          $$dN = \sigma\,dA \qquad dV_y^* = \tau_{xy}\,dA \qquad dV_z^* = \tau_{xz}\,dA$$
+
+          <p style="margin-top:1rem;"><strong>Contribuições de momento:</strong></p>
+          $$dM_y = \sigma\, z\, dA \qquad dM_z = -\sigma\, y\, dA \qquad dM_x = \left(\tau_{xz}\, y - \tau_{xy}\, z\right) dA$$
+        </blockquote>
+
+        <h4>Esforços Solicitantes como Integrais das Tensões</h4>
+        <p>
+          Integrando as contribuições elementares sobre toda a área da seção transversal $A$:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+
+          <p><strong>Resultantes de força:</strong></p>
+          $$N = \int_A \sigma\, dA \qquad V_y^* = \int_A \tau_{xy}\, dA \qquad V_z^* = \int_A \tau_{xz}\, dA$$
+
+          <p style="margin-top:1rem;"><strong>Resultantes de momento:</strong></p>
+          $$M_y = \int_A \sigma\, z\, dA \qquad M_z = -\int_A \sigma\, y\, dA \qquad M_x = \int_A \left(\tau_{xz}\, y - \tau_{xy}\, z\right) dA$$
+        </blockquote>
+
+        <h4>Interpretação das Relações</h4>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Esforço Solicitante</th>
+              <th style="padding:10px; border:1px solid #ccd;">Tensão Associada</th>
+              <th style="padding:10px; border:1px solid #ccd;">Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Força Normal $N$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Tensão normal $\sigma$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Resultante das tensões normais sobre a seção
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Força Cortante $V_y^*,\; V_z^*$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Tensões tangenciais $\tau_{xy},\; \tau_{xz}$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Resultantes das tensões tangenciais em cada direção
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Momentos Fletores $M_y,\; M_z$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Tensão normal $\sigma$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Momentos de primeira ordem das tensões normais em relação a $G$
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Momento de Torção $M_x$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Tensões tangenciais $\tau_{xy},\; \tau_{xz}$</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Momento das tensões tangenciais em relação ao eixo da barra
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding: 0.75rem 1rem;
+          background:#fffaf0; margin: 1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Observação fundamental:</strong> Obter os esforços solicitantes a partir de
+          tensões <em>conhecidas</em> é relativamente simples — basta integrar sobre a seção.
+          O caminho inverso — <strong>determinar tensões a partir dos esforços solicitantes</strong>
+          — requer, além das equações de equilíbrio,
+          <em>hipóteses de distribuição de tensões</em>, que são o objeto central da
+          Resistência dos Materiais (tração/compressão simples, flexão, torção, cisalhamento).
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap3-5', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap3-5')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap3-5"></div>
+      </section>
+
+      <!-- NAVEGAÇÃO ENTRE CAPÍTULOS -->
+      <div class="chapter-nav">
+        <a href="cap2.html" class="btn-nav">← Capítulo Anterior</a>
+        <a href="cap4.html" class="btn-nav">Próximo Capítulo →</a>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

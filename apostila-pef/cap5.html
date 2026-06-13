@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capítulo 5 — Apostila PEF</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Início</a>
+        <a href="cap1.html">Capítulos</a>
+      </nav>
+    </div>
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <div class="chapter-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-progress">
+        <h4>Seu Progresso</h4>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="globalProgressBar"></div>
+        </div>
+        <p id="globalProgressLabel">0 de 0 tópicos</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-title">Capítulos</p>
+        <ul id="sidebarChapterList"></ul>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <article class="chapter-content">
+
+      <div class="chapter-header">
+        <span class="chapter-tag">Capítulo 5</span>
+        <h2 class="chapter-title">Classificação das Estruturas Reticuladas</h2>
+        <p class="chapter-intro">
+          A <strong>classificação das estruturas reticuladas quanto à estaticidade</strong>
+          é fundamental para definir qual método de análise deve ser empregado. Uma estrutura
+          pode ser <em>hipostática</em>, <em>isostática</em>, <em>hiperestática</em> ou
+          <em>crítica</em>, a depender da relação entre o número de vínculos e as equações
+          disponíveis da estática. Essa distinção impacta diretamente a segurança, o
+          dimensionamento e o comportamento da estrutura sob carregamento.
+        </p>
+      </div>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.1 — Estruturas Hipostáticas              -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-1" data-topic-id="cap5-1" data-chapter="5">
+        <h3 class="topic-title">5.1 — Estruturas Hipostáticas</h3>
+
+        <p>
+          Uma estrutura é chamada de <strong>hipostática</strong> quando o número de
+          <em>equações da estática</em> é <strong>maior</strong> que o número de
+          <em>esforços incógnitos</em> (vínculos). Nesse caso:
+        </p>
+        <ul>
+          <li>Os vínculos internos e externos são <strong>insuficientes</strong> para
+            impedir movimentos de corpo rígido;</li>
+          <li>O equilíbrio só é possível sob ações externas muito específicas;</li>
+          <li>O equilíbrio obtido é <strong>instável</strong>.</li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #e05252; padding:0.75rem 1rem;
+          background:#fff5f5; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Atenção:</strong> As estruturas hipostáticas são também chamadas de
+          <strong>mecanismos</strong>, pois permitem movimentos de corpo rígido sem
+          necessidade de deformação dos elementos. Não são utilizadas como estruturas
+          resistentes.
+        </blockquote>
+
+        <!-- SVG 5.1 — Viga hipostática CORRIGIDO -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Exemplo: viga com 1 único apoio simples (1 vínculo, 3 equações)</em>
+            </p>
+            <svg width="340" height="160" viewBox="0 0 340 160"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Seta curva — orientação automática, ponta apontando na direção do traço -->
+                <marker id="s1-rot-l" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#e05252"/>
+                </marker>
+                <marker id="s1-rot-r" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#e05252"/>
+                </marker>
+              </defs>
+
+              <!-- Rótulos ACIMA das setas, sem sobreposição -->
+              <text x="18"  y="13" font-size="11" fill="#e05252" font-style="italic">rotação livre</text>
+              <text x="218" y="13" font-size="11" fill="#e05252" font-style="italic">rotação livre</text>
+
+              <!-- Seta esquerda: parte de cima da viga, curva para cima-esquerda -->
+              <path d="M 58,42 Q 38,24 62,18"
+                stroke="#e05252" stroke-width="2" fill="none"
+                marker-end="url(#s1-rot-l)"/>
+
+              <!-- Seta direita: parte de cima da viga, curva para cima-direita -->
+              <path d="M 282,42 Q 302,24 278,18"
+                stroke="#e05252" stroke-width="2" fill="none"
+                marker-end="url(#s1-rot-r)"/>
+
+              <!-- Viga -->
+              <rect x="30" y="48" width="280" height="18" rx="3"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+
+              <!-- Apoio simples no centro -->
+              <polygon points="170,66 148,103 192,103"
+                fill="none" stroke="black" stroke-width="2"/>
+              <line x1="130" y1="106" x2="210" y2="106"
+                stroke="black" stroke-width="2"/>
+              <line x1="130" y1="106" x2="115" y2="121" stroke="black" stroke-width="1.5"/>
+              <line x1="145" y1="106" x2="130" y2="121" stroke="black" stroke-width="1.5"/>
+              <line x1="160" y1="106" x2="145" y2="121" stroke="black" stroke-width="1.5"/>
+              <line x1="175" y1="106" x2="160" y2="121" stroke="black" stroke-width="1.5"/>
+              <line x1="190" y1="106" x2="175" y2="121" stroke="black" stroke-width="1.5"/>
+              <line x1="205" y1="106" x2="190" y2="121" stroke="black" stroke-width="1.5"/>
+
+              <!-- Label -->
+              <text x="60" y="150" font-size="12" fill="#888">
+                1 vínculo &lt; 3 equações → HIPOSTÁTICA
+              </text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              A viga pode girar livremente em torno do apoio
+            </p>
+          </div>
+
+        </div>
+
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Condição</th>
+              <th style="padding:10px; border:1px solid #ccd;">Relação</th>
+              <th style="padding:10px; border:1px solid #ccd;">Consequência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">Hipostática</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Vínculos $&lt;$ Equações da estática
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Mecanismo — movimentos de corpo rígido possíveis
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-1', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-1')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-1"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.2 — Estruturas Isostáticas               -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-2" data-topic-id="cap5-2" data-chapter="5">
+        <h3 class="topic-title">5.2 — Estruturas Isostáticas (Estaticamente Determinadas)</h3>
+
+        <p>
+          Uma estrutura é <strong>isostática</strong> (ou estaticamente determinada) quando as
+          <em>reações de apoio</em> e os <em>esforços solicitantes</em> em qualquer seção transversal
+          ficam <strong>completamente determinados</strong> pelas equações da estática, sem depender
+          das propriedades dos materiais ou das dimensões da seção.
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Propriedade fundamental:</strong> Numa estrutura isostática, os esforços
+          podem ser calculados <strong>antes mesmo de definir o material</strong> ou as
+          dimensões da seção transversal. Isso é uma grande vantagem para o processo de
+          dimensionamento.
+        </blockquote>
+
+        <p>Do ponto de vista dos movimentos de corpo rígido, a estrutura isostática:</p>
+        <ul>
+          <li>✅ <strong>Não apresenta</strong> movimentos de corpo rígido;</li>
+          <li>❌ Passaria a <strong>ter</strong> movimento de corpo rígido se
+            <strong>qualquer vínculo fosse eliminado</strong>.</li>
+        </ul>
+
+        <!-- SVG 5.2a — Viga biapoiada CORRIGIDO -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Viga biapoiada: apoio fixo (2 vínculos) + apoio simples (1 vínculo) = 3</em>
+            </p>
+            <svg width="360" height="185" viewBox="0 0 360 185"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Seta horizontal azul → -->
+                <marker id="s2a-rx" markerWidth="8" markerHeight="8"
+                  refX="7" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#1a6ef5"/>
+                </marker>
+                <!-- Seta vertical vermelha ↑ — ponta aponta para CIMA (início da linha = baixo) -->
+                <marker id="s2a-ry-fix" markerWidth="8" markerHeight="8"
+                  refX="4" refY="8" orient="auto">
+                  <path d="M0,8 L4,0 L8,8 Z" fill="#e03030"/>
+                </marker>
+                <marker id="s2a-ry-sim" markerWidth="8" markerHeight="8"
+                  refX="4" refY="8" orient="auto">
+                  <path d="M0,8 L4,0 L8,8 Z" fill="#e03030"/>
+                </marker>
+              </defs>
+
+              <!-- Viga -->
+              <rect x="38" y="52" width="284" height="18" rx="3"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+
+              <!-- Apoio fixo (esquerda) -->
+              <circle cx="68" cy="52" r="8" fill="white" stroke="black" stroke-width="2"/>
+              <polygon points="68,60 44,100 92,100"
+                fill="none" stroke="black" stroke-width="2"/>
+              <rect x="32" y="100" width="72" height="8"
+                fill="#ccc" stroke="black" stroke-width="1.5"/>
+              <line x1="32"  y1="108" x2="17"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="47"  y1="108" x2="32"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="62"  y1="108" x2="47"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="77"  y1="108" x2="62"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="92"  y1="108" x2="77"  y2="123" stroke="black" stroke-width="1.5"/>
+              <line x1="104" y1="108" x2="89"  y2="123" stroke="black" stroke-width="1.5"/>
+
+              <!-- Rx — linha da esquerda para o apoio, seta → -->
+              <line x1="10" y1="61" x2="57" y2="61"
+                stroke="#1a6ef5" stroke-width="2.2"
+                marker-end="url(#s2a-rx)"/>
+              <text x="8" y="52" font-size="12" fill="#1a6ef5" font-style="italic">Rx</text>
+
+              <!-- Ry apoio fixo — linha de BAIXO para CIMA, seta ↑ na ponta superior -->
+              <line x1="68" y1="152" x2="68" y2="72"
+                stroke="#e03030" stroke-width="2.2"
+                marker-end="url(#s2a-ry-fix)"/>
+              <text x="74" y="150" font-size="12" fill="#e03030" font-style="italic">Ry</text>
+
+              <!-- Apoio simples (direita) -->
+              <polygon points="292,70 268,100 316,100"
+                fill="none" stroke="black" stroke-width="2"/>
+              <line x1="254" y1="103" x2="330" y2="103"
+                stroke="black" stroke-width="2"/>
+              <line x1="254" y1="103" x2="239" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="269" y1="103" x2="254" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="284" y1="103" x2="269" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="299" y1="103" x2="284" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="314" y1="103" x2="299" y2="118" stroke="black" stroke-width="1.5"/>
+              <line x1="329" y1="103" x2="314" y2="118" stroke="black" stroke-width="1.5"/>
+
+              <!-- Ry apoio simples — linha de BAIXO para CIMA, seta ↑ -->
+              <line x1="292" y1="152" x2="292" y2="82"
+                stroke="#e03030" stroke-width="2.2"
+                marker-end="url(#s2a-ry-sim)"/>
+              <text x="298" y="150" font-size="12" fill="#e03030" font-style="italic">Ry</text>
+
+              <!-- Label -->
+              <text x="52" y="174" font-size="12" fill="#228833" font-weight="bold">
+                3 vínculos = 3 equações → GH = 0 → ISOSTÁTICA
+              </text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              Viga simplesmente apoiada — caso clássico isostático
+            </p>
+          </div>
+
+          <!-- SVG 5.2b — Viga em balanço CORRIGIDO -->
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Viga em balanço: engaste (3 vínculos) = 3 equações</em>
+            </p>
+            <svg width="280" height="190" viewBox="0 0 280 190"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Seta horizontal azul → -->
+                <marker id="s2b-rx" markerWidth="8" markerHeight="8"
+                  refX="7" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#1a6ef5"/>
+                </marker>
+                <!-- Seta vertical vermelha ↑ -->
+                <marker id="s2b-ry" markerWidth="8" markerHeight="8"
+                  refX="4" refY="8" orient="auto">
+                  <path d="M0,8 L4,0 L8,8 Z" fill="#e03030"/>
+                </marker>
+                <!-- Seta momento roxo -->
+                <marker id="s2b-m" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+
+              <!-- Parede (engaste) -->
+              <rect x="5" y="15" width="38" height="150" fill="#ddd"/>
+              <line x1="43" y1="15" x2="43" y2="165" stroke="black" stroke-width="2.5"/>
+              <line x1="43" y1="28"  x2="22" y2="48"  stroke="black" stroke-width="1.5"/>
+              <line x1="43" y1="50"  x2="22" y2="70"  stroke="black" stroke-width="1.5"/>
+              <line x1="43" y1="72"  x2="22" y2="92"  stroke="black" stroke-width="1.5"/>
+              <line x1="43" y1="94"  x2="22" y2="114" stroke="black" stroke-width="1.5"/>
+              <line x1="43" y1="116" x2="22" y2="136" stroke="black" stroke-width="1.5"/>
+              <line x1="43" y1="138" x2="22" y2="158" stroke="black" stroke-width="1.5"/>
+
+              <!-- Viga em balanço -->
+              <rect x="43" y="72" width="222" height="18" rx="2"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+
+              <!-- Rx — afastado da viga, com rótulo acima -->
+              <line x1="7" y1="66" x2="40" y2="66"
+                stroke="#1a6ef5" stroke-width="2.2"
+                marker-end="url(#s2b-rx)"/>
+              <text x="8" y="57" font-size="12" fill="#1a6ef5" font-style="italic">Rx</text>
+
+              <!-- Ry — linha de BAIXO para CIMA, seta ↑ -->
+              <line x1="110" y1="162" x2="110" y2="92"
+                stroke="#e03030" stroke-width="2.2"
+                marker-end="url(#s2b-ry)"/>
+              <text x="116" y="160" font-size="12" fill="#e03030" font-style="italic">Ry</text>
+
+              <!-- Momento M — curva acima da viga, sem sobrepor Rx -->
+              <path d="M 56,60 A 24,24 0 0,1 82,36"
+                stroke="#8833cc" stroke-width="2.2" fill="none"
+                marker-end="url(#s2b-m)"/>
+              <text x="84" y="32" font-size="12" fill="#8833cc" font-style="italic">M</text>
+
+              <!-- Label -->
+              <text x="28" y="182" font-size="11" fill="#228833" font-weight="bold">
+                3 vínculos = 3 equações → ISOSTÁTICA
+              </text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              Viga em balanço — também isostática
+            </p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-2', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-2')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-2"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.3 — Estruturas Hiperestáticas            -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-3" data-topic-id="cap5-3" data-chapter="5">
+        <h3 class="topic-title">5.3 — Estruturas Hiperestáticas (Estaticamente Indeterminadas)</h3>
+
+        <p>
+          Uma estrutura é <strong>hiperestática</strong> quando as equações de equilíbrio
+          <strong>não são suficientes</strong> para determinar todos os esforços solicitantes.
+          É necessário considerar a <em>deformabilidade da estrutura</em> (equações de
+          compatibilidade e relações constitutivas do material).
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          🔒 <strong>Definição do Grau de Hiperestaticidade (GH):</strong> representa o
+          número de vínculos redundantes a remover para tornar a estrutura isostática:
+          $$GH = \text{Núm. de vínculos} - \text{Núm. de equações da estática}$$
+        </blockquote>
+
+        <p>As estruturas hiperestáticas se subdividem em duas categorias:</p>
+
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#4f8ef7; color:white;">
+              <th style="padding:12px; border:1px solid #3a7be0;">Subcategoria</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Descrição</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Exemplo típico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f9fbff;">
+              <td style="padding:10px; border:1px solid #ccd;">
+                <strong>Externamente hiperestática</strong>
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Excesso de <em>reações de apoio</em> em relação às equações da estática
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Viga com dois apoios fixos nas extremidades
+              </td>
+            </tr>
+            <tr style="background:#fff;">
+              <td style="padding:10px; border:1px solid #ccd;">
+                <strong>Internamente hiperestática</strong>
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Indeterminada mesmo com todos os esforços reativos conhecidos
+              </td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Treliça com barras redundantes
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- SVG 5.3 — Viga duplamente engastada -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Viga com engaste em ambas extremidades: 6 vínculos, 3 equações → GH = 3</em>
+            </p>
+            <svg width="380" height="130" viewBox="0 0 380 130"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="hip-l-h" markerWidth="7" markerHeight="7"
+                  refX="6" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+                </marker>
+                <marker id="hip-l-v" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="7" orient="auto">
+                  <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+                </marker>
+                <marker id="hip-l-m" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#8833cc"/>
+                </marker>
+                <marker id="hip-r-h" markerWidth="7" markerHeight="7"
+                  refX="6" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+                </marker>
+                <marker id="hip-r-v" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="7" orient="auto">
+                  <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+                </marker>
+                <marker id="hip-r-m" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+
+              <!-- Parede esquerda -->
+              <rect x="5" y="15" width="30" height="100" fill="#ddd"/>
+              <line x1="35" y1="15" x2="35" y2="115" stroke="black" stroke-width="2.5"/>
+              <line x1="35" y1="22" x2="18" y2="39" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="40" x2="18" y2="57" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="58" x2="18" y2="75" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="76" x2="18" y2="93" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="94" x2="18" y2="111" stroke="black" stroke-width="1.5"/>
+
+              <!-- Parede direita -->
+              <rect x="345" y="15" width="30" height="100" fill="#ddd"/>
+              <line x1="345" y1="15" x2="345" y2="115" stroke="black" stroke-width="2.5"/>
+              <line x1="345" y1="22" x2="328" y2="39" stroke="black" stroke-width="1.5"/>
+              <line x1="345" y1="40" x2="328" y2="57" stroke="black" stroke-width="1.5"/>
+              <line x1="345" y1="58" x2="328" y2="75" stroke="black" stroke-width="1.5"/>
+              <line x1="345" y1="76" x2="328" y2="93" stroke="black" stroke-width="1.5"/>
+              <line x1="345" y1="94" x2="328" y2="111" stroke="black" stroke-width="1.5"/>
+
+              <!-- Viga -->
+              <rect x="35" y="50" width="310" height="20" rx="2"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+
+              <!-- Reações esquerda -->
+              <line x1="5" y1="60" x2="33" y2="60"
+                stroke="#1a6ef5" stroke-width="2"
+                marker-end="url(#hip-l-h)"/>
+              <text x="6" y="52" font-size="10" fill="#1a6ef5" font-style="italic">Rx</text>
+
+              <line x1="90" y1="110" x2="90" y2="72"
+                stroke="#e03030" stroke-width="2"
+                marker-end="url(#hip-l-v)"/>
+              <text x="94" y="108" font-size="10" fill="#e03030" font-style="italic">Ry</text>
+
+              <path d="M 48,40 A 18,18 0 0,1 66,22"
+                stroke="#8833cc" stroke-width="2" fill="none"
+                marker-end="url(#hip-l-m)"/>
+              <text x="68" y="24" font-size="10" fill="#8833cc" font-style="italic">M</text>
+
+              <!-- Reações direita -->
+              <line x1="375" y1="60" x2="347" y2="60"
+                stroke="#1a6ef5" stroke-width="2"
+                marker-end="url(#hip-r-h)"/>
+              <text x="350" y="52" font-size="10" fill="#1a6ef5" font-style="italic">Rx</text>
+
+              <line x1="290" y1="110" x2="290" y2="72"
+                stroke="#e03030" stroke-width="2"
+                marker-end="url(#hip-r-v)"/>
+              <text x="270" y="108" font-size="10" fill="#e03030" font-style="italic">Ry</text>
+
+              <path d="M 330,40 A 18,18 0 0,0 312,22"
+                stroke="#8833cc" stroke-width="2" fill="none"
+                marker-end="url(#hip-r-m)"/>
+              <text x="296" y="24" font-size="10" fill="#8833cc" font-style="italic">M</text>
+
+              <!-- Label -->
+              <text x="95" y="125" font-size="12" fill="#c55a00" font-weight="bold">
+                6 vínculos − 3 equações = GH = 3 → HIPERESTÁTICA
+              </text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              Viga com dois engastes — externamente hiperestática de grau 3
+            </p>
+          </div>
+
+        </div>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Implicação prática:</strong> Nas estruturas hiperestáticas, os esforços
+          internos <strong>dependem da rigidez relativa</strong> dos elementos. Alterar as
+          dimensões da seção transversal ou o material <em>modifica a distribuição dos
+          esforços</em> — ao contrário das estruturas isostáticas.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-3', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-3')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-3"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.4 — Estruturas Críticas                  -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-4" data-topic-id="cap5-4" data-chapter="5">
+        <h3 class="topic-title">5.4 — Estruturas Críticas</h3>
+
+        <p>
+          Uma estrutura é chamada de <strong>crítica</strong> quando as equações da estática
+          precisam ser escritas na <em>configuração deformada</em> para que o equilíbrio seja
+          satisfeito. Suas características principais são:
+        </p>
+        <ul>
+          <li>
+            A estrutura apresenta <strong>tendência de movimento</strong>, mas opõe
+            <em>resistência crescente</em> conforme o movimento se inicia;
+          </li>
+          <li>
+            Há <strong>forte não-linearidade</strong> entre deformações e deslocamentos
+            (análise de 2ª ordem);
+          </li>
+          <li>
+            O equilíbrio é obtido mobilizando esforços internos e reativos na
+            <strong>posição deformada</strong>.
+          </li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Atenção:</strong> A análise de estruturas críticas requer métodos de
+          <em>análise não-linear geométrica</em> (teoria de 2ª ordem), que vão além da
+          estática clássica de 1ª ordem. O caso mais estudado é a
+          <strong>flambagem de Euler</strong>, tratada em fascículo específico do curso.
+        </blockquote>
+
+        <!-- SVG 5.4 — Pilar crítico -->
+        <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-end;">
+
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Estado inicial — configuração indeformada</em>
+            </p>
+            <svg width="120" height="200" viewBox="0 0 120 200"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="crit-load1" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="7" orient="auto">
+                  <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+                </marker>
+              </defs>
+              <rect x="20" y="170" width="80" height="20" fill="#ddd" stroke="black" stroke-width="1.5"/>
+              <line x1="20" y1="190" x2="0"   y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="35" y1="190" x2="15"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="50" y1="190" x2="30"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="65" y1="190" x2="45"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="80" y1="190" x2="60"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="95" y1="190" x2="75"  y2="200" stroke="black" stroke-width="1.5"/>
+              <rect x="52" y="25" width="16" height="145" fill="#bbb" stroke="#555" stroke-width="2"/>
+              <!-- Carga ↓ -->
+              <line x1="60" y1="5" x2="60" y2="23"
+                stroke="#e03030" stroke-width="2.5"
+                marker-end="url(#crit-load1)"/>
+              <text x="64" y="12" font-size="12" fill="#e03030" font-weight="bold">P</text>
+              <text x="15" y="158" font-size="11" fill="#228833">P &lt; P_cr</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              Carga abaixo da crítica — estável
+            </p>
+          </div>
+
+          <div style="text-align:center;">
+            <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+              <em>Estado crítico — configuração deformada</em>
+            </p>
+            <svg width="140" height="200" viewBox="0 0 140 200"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="crit-load2" markerWidth="7" markerHeight="7"
+                  refX="3.5" refY="7" orient="auto">
+                  <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+                </marker>
+                <marker id="crit-disp" markerWidth="7" markerHeight="7"
+                  refX="6" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z" fill="#8833cc"/>
+                </marker>
+              </defs>
+              <rect x="30" y="170" width="80" height="20" fill="#ddd" stroke="black" stroke-width="1.5"/>
+              <line x1="30"  y1="190" x2="10"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="45"  y1="190" x2="25"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="60"  y1="190" x2="40"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="75"  y1="190" x2="55"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="90"  y1="190" x2="70"  y2="200" stroke="black" stroke-width="1.5"/>
+              <line x1="105" y1="190" x2="85"  y2="200" stroke="black" stroke-width="1.5"/>
+              <path d="M 70,170 Q 105,120 70,90 Q 40,60 70,25"
+                stroke="#555" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <!-- Carga ↓ -->
+              <line x1="70" y1="5" x2="70" y2="23"
+                stroke="#e03030" stroke-width="2.5"
+                marker-end="url(#crit-load2)"/>
+              <text x="75" y="12" font-size="12" fill="#e03030" font-weight="bold">P</text>
+              <text x="10" y="150" font-size="11" fill="#c55a00">P = P_cr</text>
+              <line x1="75" y1="90" x2="108" y2="90"
+                stroke="#8833cc" stroke-width="1.8" stroke-dasharray="4,3"
+                marker-end="url(#crit-disp)"/>
+              <text x="110" y="93" font-size="10" fill="#8833cc" font-style="italic">δ</text>
+            </svg>
+            <p style="font-size:0.8rem; color:#777; margin-top:0.3rem;">
+              Carga crítica $P_{cr}$ — início da flambagem
+            </p>
+          </div>
+
+        </div>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-4', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-4')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-4"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.5 — Grau de Hiperestaticidade (GH)       -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-5" data-topic-id="cap5-5" data-chapter="5">
+        <h3 class="topic-title">5.5 — Grau de Hiperestaticidade (GH)</h3>
+
+        <p>
+          O <strong>Grau de Hiperestaticidade (GH)</strong> quantifica o número de
+          vínculos <em>redundantes</em> presentes na estrutura, ou seja, quantos vínculos
+          devem ser removidos para que ela se torne <strong>isostática</strong>:
+        </p>
+
+        <div style="background:#f5f8ff; border:1px solid #c5d8fa; border-radius:8px;
+          padding:1.25rem; margin:1.25rem 0; text-align:center;">
+          $$GH = \text{Número de vínculos} - \text{Número de equações da estática}$$
+        </div>
+
+        <p>
+          No plano (estruturas 2D), o número de equações da estática é <strong>3</strong>
+          ($\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$).
+          No espaço (estruturas 3D), são <strong>6</strong> equações.
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#4f8ef7; color:white;">
+              <th style="padding:12px; border:1px solid #3a7be0;">Classificação</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Condição (GH)</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Vínculos vs. Equações</th>
+              <th style="padding:12px; border:1px solid #3a7be0;">Movimento de corpo rígido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff5f5;">
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Hipostática</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">$GH &lt; 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculos $&lt;$ Equações</td>
+              <td style="padding:10px; border:1px solid #ccd;">✅ Apresenta (mecanismo)</td>
+            </tr>
+            <tr style="background:#f5fff5;">
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Isostática</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">$GH = 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculos $=$ Equações</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ❌ Não apresenta (instabiliza com remoção de 1 vínculo)
+              </td>
+            </tr>
+            <tr style="background:#f9fbff;">
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Hiperestática</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">$GH &gt; 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculos $&gt;$ Equações</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ❌ Não apresenta (permanece estável após remoção de vínculos redundantes)
+              </td>
+            </tr>
+            <tr style="background:#fffaf0;">
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Crítica</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">$GH = 0$*</td>
+              <td style="padding:10px; border:1px solid #ccd;">Vínculos $=$ Equações (2ª ordem)</td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                ⚠️ Tendência de movimento com resistência crescente
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.82rem; color:#888; margin-top:-0.5rem;">
+          * A estrutura crítica tem $GH = 0$ pela contagem simples, mas requer análise de
+          2ª ordem para a correta avaliação do equilíbrio.
+        </p>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-5', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-5')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-5"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 5.6 — Identificação pelo Movimento de CR   -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap5-6" data-topic-id="cap5-6" data-chapter="5">
+        <h3 class="topic-title">5.6 — Identificação pela Análise dos Movimentos de Corpo Rígido</h3>
+
+        <p>
+          Uma forma prática e intuitiva de classificar estruturas é analisar os
+          <strong>movimentos de corpo rígido</strong> possíveis (translações e rotações
+          sem deformação dos elementos):
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          <ul style="margin:0.25rem 0 0 1rem; line-height:2rem;">
+            <li>
+              <strong>Hipostática →</strong> apresenta <em>um ou mais</em> movimentos
+              de corpo rígido possíveis.
+            </li>
+            <li>
+              <strong>Isostática →</strong> não apresenta movimentos de corpo rígido,
+              mas passaria a ter se <em>qualquer vínculo</em> fosse eliminado.
+            </li>
+            <li>
+              <strong>Hiperestática →</strong> não apresenta movimentos de corpo rígido,
+              e <em>continua sem apresentar</em> mesmo após a remoção de vínculos redundantes.
+            </li>
+            <li>
+              <strong>Crítica →</strong> apresenta <em>tendência</em> de movimento, mas
+              opõe resistência crescente conforme o movimento se inicia.
+            </li>
+          </ul>
+        </blockquote>
+
+        <!-- SVG 5.6 — Quadro comparativo -->
+        <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center;
+          margin:1.5rem 0; align-items:flex-start;">
+
+          <!-- Hipostática -->
+          <div style="text-align:center; max-width:140px;">
+            <p style="font-size:0.82rem; color:#e05252; font-weight:bold;
+              margin-bottom:0.4rem;">HIPOSTÁTICA</p>
+            <svg width="120" height="90" viewBox="0 0 120 90"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="mov1" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#e05252"/>
+                </marker>
+                <marker id="mov2" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#e05252"/>
+                </marker>
+              </defs>
+              <rect x="10" y="30" width="100" height="14" rx="2"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+              <polygon points="60,44 45,72 75,72" fill="none" stroke="black" stroke-width="2"/>
+              <line x1="38" y1="74" x2="82" y2="74" stroke="black" stroke-width="2"/>
+              <line x1="38" y1="74" x2="26" y2="86" stroke="black" stroke-width="1.5"/>
+              <line x1="50" y1="74" x2="38" y2="86" stroke="black" stroke-width="1.5"/>
+              <line x1="62" y1="74" x2="50" y2="86" stroke="black" stroke-width="1.5"/>
+              <line x1="74" y1="74" x2="62" y2="86" stroke="black" stroke-width="1.5"/>
+              <path d="M 18,22 Q 10,10 22,8" stroke="#e05252" stroke-width="1.8"
+                fill="none" marker-end="url(#mov1)"/>
+              <path d="M 102,22 Q 110,10 98,8" stroke="#e05252" stroke-width="1.8"
+                fill="none" marker-end="url(#mov2)"/>
+            </svg>
+            <p style="font-size:0.75rem; color:#e05252; margin-top:0.3rem;">
+              Movimento possível<br/>GH &lt; 0
+            </p>
+          </div>
+
+          <!-- Isostática -->
+          <div style="text-align:center; max-width:160px;">
+            <p style="font-size:0.82rem; color:#228833; font-weight:bold;
+              margin-bottom:0.4rem;">ISOSTÁTICA</p>
+            <svg width="150" height="90" viewBox="0 0 150 90"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="30" width="130" height="14" rx="2"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+              <circle cx="30" cy="30" r="6" fill="white" stroke="black" stroke-width="1.5"/>
+              <polygon points="30,36 14,64 46,64" fill="none" stroke="black" stroke-width="1.8"/>
+              <rect x="8" y="64" width="44" height="6" fill="#ccc" stroke="black" stroke-width="1.5"/>
+              <line x1="8"  y1="70" x2="0"  y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="18" y1="70" x2="10" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="28" y1="70" x2="20" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="38" y1="70" x2="30" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="48" y1="70" x2="40" y2="80" stroke="black" stroke-width="1.2"/>
+              <polygon points="120,44 106,68 134,68" fill="none" stroke="black" stroke-width="1.8"/>
+              <line x1="94"  y1="71" x2="146" y2="71" stroke="black" stroke-width="1.8"/>
+              <line x1="94"  y1="71" x2="84"  y2="82" stroke="black" stroke-width="1.2"/>
+              <line x1="106" y1="71" x2="96"  y2="82" stroke="black" stroke-width="1.2"/>
+              <line x1="118" y1="71" x2="108" y2="82" stroke="black" stroke-width="1.2"/>
+              <line x1="130" y1="71" x2="120" y2="82" stroke="black" stroke-width="1.2"/>
+              <line x1="142" y1="71" x2="132" y2="82" stroke="black" stroke-width="1.2"/>
+            </svg>
+            <p style="font-size:0.75rem; color:#228833; margin-top:0.3rem;">
+              Sem movimento de CR<br/>GH = 0
+            </p>
+          </div>
+
+          <!-- Hiperestática -->
+          <div style="text-align:center; max-width:160px;">
+            <p style="font-size:0.82rem; color:#c55a00; font-weight:bold;
+              margin-bottom:0.4rem;">HIPERESTÁTICA</p>
+            <svg width="150" height="90" viewBox="0 0 150 90"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="30" width="130" height="14" rx="2"
+                fill="#bbb" stroke="#555" stroke-width="2"/>
+              <circle cx="30" cy="30" r="6" fill="white" stroke="black" stroke-width="1.5"/>
+              <polygon points="30,36 14,62 46,62" fill="none" stroke="black" stroke-width="1.8"/>
+              <rect x="8" y="62" width="44" height="6" fill="#ccc" stroke="black" stroke-width="1.5"/>
+              <line x1="8"  y1="68" x2="0"  y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="18" y1="68" x2="10" y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="28" y1="68" x2="20" y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="38" y1="68" x2="30" y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="48" y1="68" x2="40" y2="78" stroke="black" stroke-width="1.2"/>
+              <circle cx="120" cy="30" r="6" fill="white" stroke="black" stroke-width="1.5"/>
+              <polygon points="120,36 104,62 136,62" fill="none" stroke="black" stroke-width="1.8"/>
+              <rect x="102" y="62" width="36" height="6" fill="#ccc" stroke="black" stroke-width="1.5"/>
+              <line x1="102" y1="68" x2="94"  y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="112" y1="68" x2="104" y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="122" y1="68" x2="114" y2="78" stroke="black" stroke-width="1.2"/>
+              <line x1="132" y1="68" x2="124" y2="78" stroke="black" stroke-width="1.2"/>
+              <polygon points="75,44 63,68 87,68" fill="none" stroke="black" stroke-width="1.8"/>
+              <line x1="55" y1="70" x2="95" y2="70" stroke="black" stroke-width="1.8"/>
+              <line x1="55" y1="70" x2="47" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="65" y1="70" x2="57" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="75" y1="70" x2="67" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="85" y1="70" x2="77" y2="80" stroke="black" stroke-width="1.2"/>
+              <line x1="95" y1="70" x2="87" y2="80" stroke="black" stroke-width="1.2"/>
+            </svg>
+            <p style="font-size:0.75rem; color:#c55a00; margin-top:0.3rem;">
+              Sem movimento — vínculos redundantes<br/>GH &gt; 0
+            </p>
+          </div>
+
+          <!-- Crítica -->
+          <div style="text-align:center; max-width:130px;">
+            <p style="font-size:0.82rem; color:#8833cc; font-weight:bold;
+              margin-bottom:0.4rem;">CRÍTICA</p>
+            <svg width="110" height="90" viewBox="0 0 110 90"
+              xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="crit-p" markerWidth="6" markerHeight="6"
+                  refX="3" refY="6" orient="auto">
+                  <path d="M0,6 L3,0 L6,6 Z" fill="#e03030"/>
+                </marker>
+              </defs>
+              <rect x="10" y="72" width="90" height="12" fill="#ddd" stroke="black" stroke-width="1.5"/>
+              <line x1="10" y1="84" x2="0"  y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="22" y1="84" x2="12" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="34" y1="84" x2="24" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="46" y1="84" x2="36" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="58" y1="84" x2="48" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="70" y1="84" x2="60" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="82" y1="84" x2="72" y2="90" stroke="black" stroke-width="1.2"/>
+              <line x1="94" y1="84" x2="84" y2="90" stroke="black" stroke-width="1.2"/>
+              <path d="M 55,72 Q 68,50 55,12"
+                stroke="#555" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <!-- Carga ↓ -->
+              <line x1="55" y1="2" x2="55" y2="11"
+                stroke="#e03030" stroke-width="2.2"
+                marker-end="url(#crit-p)"/>
+              <text x="58" y="9" font-size="11" fill="#e03030" font-weight="bold">P</text>
+              <line x1="70" y1="42" x2="80" y2="42"
+                stroke="#8833cc" stroke-width="1.8" stroke-dasharray="3,3"/>
+            </svg>
+            <p style="font-size:0.75rem; color:#8833cc; margin-top:0.3rem;">
+              Tendência de movimento<br/>análise 2ª ordem
+            </p>
+          </div>
+
+        </div><!-- fim flex -->
+
+        <!-- NAVEGAÇÃO -->
+        <div class="chapter-nav">
+          <a href="cap4.html" class="btn-nav">← Capítulo Anterior</a>
+          <a href="cap6.html" class="btn-nav">Próximo Capítulo →</a>
+        </div>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap5-6', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap5-6')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap5-6"></div>
+      </section>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+

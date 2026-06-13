@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capítulo 2 — Apostila PEF</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Início</a>
+        <a href="cap1.html" class="active">Capítulos</a>
+      </nav>
+    </div>
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <div class="chapter-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-progress">
+        <h4>Seu Progresso</h4>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="globalProgressBar"></div>
+        </div>
+        <p id="globalProgressLabel">0 de 0 tópicos</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-title">Capítulos</p>
+        <ul id="sidebarChapterList">
+          <!-- Gerado por JS -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <article class="chapter-content">
+
+      <div class="chapter-header">
+        <span class="chapter-tag">Capítulo 2</span>
+        <h2 class="chapter-title">Equações da Estática</h2>
+        <p class="chapter-intro">
+          Fundamentos do equilíbrio de sólidos, Leis de Euler, equações escalares
+          no espaço e no plano, e classificação de estruturas isostáticas e hiperestáticas.
+        </p>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 2.1 — Definição de Equilíbrio     -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap2-1" data-topic-id="cap2-1" data-chapter="2">
+        <h3 class="topic-title">2.1 — Definição de Equilíbrio</h3>
+
+        <p>
+          Um sólido está em <strong>equilíbrio</strong> em relação a um referencial inercial
+          quando está em <em>repouso</em> nesse referencial, ou seja, quando as posições
+          de todos os seus pontos não variam com o tempo.
+        </p>
+
+        <p>
+          Esse conceito é fundamental para a Resistência dos Materiais, pois toda estrutura
+          dimensionada deve estar em equilíbrio sob a ação das cargas externas aplicadas
+          e das reações dos apoios.
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1rem;
+          background:#f5f8ff; margin: 1.25rem 0; border-radius:4px;">
+          <strong>Observação:</strong> O referencial inercial é aquele no qual a primeira
+          lei de Newton é válida. Na prática da Engenharia Civil e Mecânica, o referencial
+          fixo à Terra é considerado inercial com boa aproximação.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-1', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-1')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-1"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 2.2 — Leis de Euler               -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap2-2" data-topic-id="cap2-2" data-chapter="2">
+        <h3 class="topic-title">2.2 — Leis de Euler</h3>
+
+        <p>
+          Para um corpo em repouso em relação a um sistema inercial, as <strong>Leis de Euler</strong>
+          fornecem duas condições que devem ser satisfeitas <em>simultaneamente</em>:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+          <p><strong>Soma de todas as forças:</strong></p>
+          $$\sum_{i=1}^{n_F} \vec{F}_i = \vec{0}$$
+
+          <p style="margin-top:1rem;"><strong>Soma de todos os momentos em relação a um polo arbitrário O:</strong></p>
+          $$\sum_{j=1}^{n_M} \vec{M}_{Oj} = \vec{0}$$
+        </blockquote>
+
+        <p>
+          Isso significa que tanto a <strong>resultante das forças</strong> quanto o
+          <strong>momento resultante</strong> em relação a qualquer polo O devem ser nulos
+          para que o corpo esteja em equilíbrio.
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1rem;
+          background:#f5f8ff; margin: 1.25rem 0; border-radius:4px;">
+          <strong>Contexto histórico:</strong> As Leis de Euler estendem, para a Mecânica
+          dos Sólidos, a Segunda Lei de Newton. Enquanto Newton formulou suas leis para
+          partículas (pontos materiais), Euler generalizou-as para corpos rígidos e deformáveis.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-2', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-2')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-2"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 2.3 — Equações Escalares 3D       -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap2-3" data-topic-id="cap2-3" data-chapter="2">
+        <h3 class="topic-title">2.3 — Equações Escalares no Espaço (3D)</h3>
+
+        <p>
+          Reescrevendo as Leis de Euler em componentes em relação a três eixos ortogonais
+          $x$, $y$ e $z$ passando por O, obtêm-se <strong>seis equações</strong>:
+        </p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Equações de Força</th>
+              <th style="padding:10px; border:1px solid #ccd;">Equações de Momento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum F_x = 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum M_{Ox} = 0$</td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum F_y = 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum M_{Oy} = 0$</td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum F_z = 0$</td>
+              <td style="padding:10px; border:1px solid #ccd;">$\displaystyle\sum M_{Oz} = 0$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          Essas seis equações representam o <strong>caso geral tridimensional</strong> da estática.
+          Em estruturas espaciais (pórticos 3D, treliças), todas as seis devem ser consideradas
+          na determinação das reações de apoio.
+        </p>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding: 0.75rem 1rem;
+          background:#fffaf0; margin: 1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Importante:</strong> As seis equações valem para qualquer polo O.
+          A escolha estratégica de O pode simplificar significativamente a resolução do sistema.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-3', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-3')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-3"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 2.4 — Equações no Caso Plano (2D) -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap2-4" data-topic-id="cap2-4" data-chapter="2">
+        <h3 class="topic-title">2.4 — Equações no Caso Plano (2D)</h3>
+
+        <p>
+          Para sistemas de forças coplanares, em que forças atuam apenas no plano definido
+          pelos eixos $x$ e $y$, as equações referentes ao eixo $z$ e aos momentos
+          $M_{Ox}$ e $M_{Oy}$ tornam-se nulas. Restam apenas <strong>três equações</strong>:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+          $$\sum F_x = 0$$
+          $$\sum F_y = 0$$
+          $$\sum M_{Oz} = 0$$
+        </blockquote>
+
+        <p>
+          Essa simplificação é <strong>amplamente usada</strong> para estruturas planas
+          como vigas, pórticos e treliças.
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1rem;
+          background:#f5f8ff; margin: 1.25rem 0; border-radius:4px;">
+          💡 <strong>Observação prática:</strong> Na análise de vigas, geralmente o polo O
+          é escolhido em um apoio, para eliminar a reação desse apoio da equação de momento
+          e simplificar o cálculo.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-4', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-4')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-4"></div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TÓPICO 2.5 — Estruturas Isostáticas e Hiperestáticas    -->
+      <!-- ======================================================= -->
+      <section class="topic" id="topic-cap2-5" data-topic-id="cap2-5" data-chapter="2">
+        <h3 class="topic-title">2.5 — Estruturas Isostáticas e Hiperestáticas</h3>
+
+        <p>
+          As equações da estática servem para determinar reações e esforços em estruturas.
+          O <strong>grau de hiperestaticidade</strong> $g$ é dado por:
+        </p>
+
+        $$g = n_{\text{incógnitas}} - n_{\text{equações de equilíbrio}}$$
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th style="padding:10px; border:1px solid #ccd;">Tipo de Estrutura</th>
+              <th style="padding:10px; border:1px solid #ccd;">Definição</th>
+              <th style="padding:10px; border:1px solid #ccd; text-align:center;">
+                Equações da Estática Bastam?
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Isostática</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Número de incógnitas igual às equações de equilíbrio ($g = 0$)
+              </td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center; color:green;">
+                <strong>Sim</strong>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px; border:1px solid #ccd;"><strong>Hiperestática</strong></td>
+              <td style="padding:10px; border:1px solid #ccd;">
+                Número de incógnitas maior do que as equações de equilíbrio ($g > 0$)
+              </td>
+              <td style="padding:10px; border:1px solid #ccd; text-align:center; color:#c0392b;">
+                <strong>Não</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Nas estruturas hiperestáticas, as equações adicionais necessárias são:</p>
+        <ul>
+          <li>De <strong>compatibilidade</strong> (relações geométricas das deformações);</li>
+          <li><strong>Constitutivas</strong> (relações tensão-deformação, como a Lei de Hooke).</li>
+        </ul>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding: 0.75rem 1rem;
+          background:#fffaf0; margin: 1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Ponto-chave:</strong> Em estruturas isostáticas, as respostas dependem
+          apenas do equilíbrio. Nas hiperestáticas, também dependem da rigidez dos elementos.
+        </blockquote>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-5', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-5')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-5"></div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TÓPICO 2.6 — Exemplo de Aplicação        -->
+      <!-- ======================================== -->
+      <section class="topic" id="topic-cap2-6" data-topic-id="cap2-6" data-chapter="2">
+        <h3 class="topic-title">2.6 — Exemplo de Aplicação</h3>
+
+        <p>
+          Considere uma <strong>viga simplesmente apoiada</strong> de comprimento $L$,
+          submetida a uma carga $P$ aplicada a uma distância $a$ do apoio A,
+          com $b = L - a$ ao apoio B.
+        </p>
+
+        <p>
+          As reações de apoio $R_A$ e $R_B$ são obtidas pelas três equações do caso plano:
+        </p>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding: 0.75rem 1.5rem;
+          background:#f0f4ff; margin: 1.25rem 0; border-radius:4px;">
+
+          <p><strong>① Momento em relação a A:</strong></p>
+          $$R_B \cdot L - P \cdot a = 0 \;\Rightarrow\; R_B = \frac{P \cdot a}{L}$$
+
+          <p style="margin-top:1rem;"><strong>② Equilíbrio de forças na vertical:</strong></p>
+          $$R_A + R_B = P \;\Rightarrow\; R_A = P - R_B = \frac{P \cdot b}{L}$$
+
+          <p style="margin-top:1rem;"><strong>③ Verificação — Momento em relação a B:</strong></p>
+          $$-R_A \cdot L + P \cdot b = 0 \;\Rightarrow\; R_A = \frac{P \cdot b}{L} \;\checkmark$$
+        </blockquote>
+
+        <p>
+          Resultado: a estrutura é <em>isostática</em> ($g = 0$), pois há duas incógnitas
+          e duas equações independentes. A terceira equação serve como verificação.
+        </p>
+
+        <!-- AÇÕES DO TÓPICO -->
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap2-6', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap2-6')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap2-6"></div>
+      </section>
+
+      <!-- NAVEGAÇÃO ENTRE CAPÍTULOS -->
+      <div class="chapter-nav">
+        <a href="cap1.html" class="btn-nav">← Capítulo Anterior</a>
+        <a href="cap3.html" class="btn-nav">Próximo Capítulo →</a>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capítulo 6 — Apostila PEF</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-sigla">USP</span>
+        <div>
+          <h1 class="header-title">Apostila Inteligente de PEF</h1>
+          <p class="header-subtitle">Universidade de São Paulo</p>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">Início</a>
+        <a href="cap1.html">Capítulos</a>
+      </nav>
+    </div>
+    <div class="reading-bar" id="readingBar"></div>
+  </header>
+
+  <div class="chapter-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-progress">
+        <h4>Seu Progresso</h4>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="globalProgressBar"></div>
+        </div>
+        <p id="globalProgressLabel">0 de 0 tópicos</p>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-nav-title">Capítulos</p>
+        <ul id="sidebarChapterList"></ul>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <article class="chapter-content">
+
+      <div class="chapter-header">
+        <span class="chapter-tag">Capítulo 6</span>
+        <h2 class="chapter-title">Determinação dos Esforços Solicitantes</h2>
+        <p class="chapter-intro">
+          A <strong>determinação dos esforços solicitantes</strong> — força normal $N$,
+          força cortante $V$ e momento fletor $M$ — é o passo fundamental da análise estrutural.
+          Neste capítulo desenvolve-se o método das equações diferenciais de equilíbrio e o
+          traçado dos diagramas de estado, aplicados a barras retas, inclinadas, curvas,
+          vigas poligonais bidimensionais e tridimensionais, e pórticos tri-articulados.
+        </p>
+      </div>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.1 — Equações Diferenciais de Equilíbrio  -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-1" data-topic-id="cap6-1" data-chapter="6">
+        <h3 class="topic-title">6.1 — Equações Diferenciais de Equilíbrio</h3>
+
+        <p>
+          Considera-se um elemento infinitesimal de comprimento $dx$ de uma barra prismática
+          reta submetida a uma carga distribuída transversal $p(x)$. Aplicando as equações
+          de equilíbrio estático ao elemento, obtêm-se as
+          <strong>equações diferenciais de equilíbrio</strong>:
+        </p>
+
+        <div style="background:#f5f8ff; border:1px solid #c5d8fa; border-radius:8px;
+          padding:1.25rem; margin:1.25rem 0; text-align:center;">
+          $$\frac{dN}{dx} = 0 \qquad \frac{dV}{dx} = -p(x) \qquad \frac{dM}{dx} = V$$
+        </div>
+
+        <p>Combinando as duas últimas equações:</p>
+
+        <div style="background:#fff8e1; border:2px solid #f7a84f; border-radius:8px;
+          padding:1rem; margin:1.25rem 0; text-align:center;">
+          $$\frac{d^2M}{dx^2} = \frac{dV}{dx} = -p(x)$$
+        </div>
+
+        <!-- SVG — Elemento infinitesimal -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Elemento infinitesimal dx com esforços solicitantes e carga distribuída p(x)</em>
+          </p>
+          <svg width="420" height="200" viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Seta →  -->
+              <marker id="eq-arr-r" markerWidth="8" markerHeight="8"
+                refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#333"/>
+              </marker>
+              <!-- Seta ↑ -->
+              <marker id="eq-arr-u" markerWidth="8" markerHeight="8"
+                refX="4" refY="8" orient="auto">
+                <path d="M0,8 L4,0 L8,8 Z" fill="#e03030"/>
+              </marker>
+              <!-- Seta ↓ -->
+              <marker id="eq-arr-d" markerWidth="8" markerHeight="8"
+                refX="4" refY="0" orient="auto">
+                <path d="M0,0 L4,8 L8,0 Z" fill="#1a6ef5"/>
+              </marker>
+              <!-- Seta momento → roxo -->
+              <marker id="eq-arr-m" markerWidth="8" markerHeight="8"
+                refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#8833cc"/>
+              </marker>
+              <!-- Seta carga distribuída ↓ azul -->
+              <marker id="eq-p-d" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Viga (barra) -->
+            <rect x="90" y="88" width="240" height="22" rx="2"
+              fill="#ddd" stroke="#555" stroke-width="2"/>
+
+            <!-- Rótulos dx -->
+            <line x1="90" y1="130" x2="330" y2="130"
+              stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+            <line x1="90" y1="125" x2="90" y2="135" stroke="#888" stroke-width="1.5"/>
+            <line x1="330" y1="125" x2="330" y2="135" stroke="#888" stroke-width="1.5"/>
+            <text x="200" y="145" font-size="12" fill="#555"
+              text-anchor="middle" font-style="italic">dx</text>
+
+            <!-- Carga distribuída p(x) -->
+            <line x1="120" y1="55" x2="120" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="150" y1="55" x2="150" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="180" y1="55" x2="180" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="210" y1="55" x2="210" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="240" y1="55" x2="240" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="270" y1="55" x2="270" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <line x1="300" y1="55" x2="300" y2="86"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#eq-p-d)"/>
+            <!-- Linha de carga p -->
+            <line x1="110" y1="55" x2="315" y2="55"
+              stroke="#1a6ef5" stroke-width="2"/>
+            <text x="320" y="58" font-size="12" fill="#1a6ef5" font-style="italic">p(x)</text>
+
+            <!-- Esforço V na seção esquerda (seta ↑ vermelha) -->
+            <line x1="90" y1="160" x2="90" y2="112"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#eq-arr-u)"/>
+            <text x="62" y="158" font-size="11" fill="#e03030" font-style="italic">V</text>
+
+            <!-- Esforço V+dV na seção direita (seta ↓) -->
+            <line x1="330" y1="112" x2="330" y2="162"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#eq-arr-d)"/>
+            <text x="334" y="165" font-size="11" fill="#e03030" font-style="italic">V+dV</text>
+
+            <!-- Esforço N na seção esquerda (seta ← verde) -->
+            <line x1="60" y1="99" x2="88" y2="99"
+              stroke="#228833" stroke-width="2.2" marker-end="url(#eq-arr-r)"/>
+            <text x="38" y="97" font-size="11" fill="#228833" font-style="italic">N</text>
+
+            <!-- Esforço N+dN na seção direita (seta →) -->
+            <line x1="332" y1="99" x2="360" y2="99"
+              stroke="#228833" stroke-width="2.2" marker-end="url(#eq-arr-r)"/>
+            <text x="362" y="97" font-size="11" fill="#228833" font-style="italic">N+dN</text>
+
+            <!-- Momento M na seção esquerda (arco roxo) -->
+            <path d="M 82,80 A 14,14 0 0,1 98,66"
+              stroke="#8833cc" stroke-width="2" fill="none"
+              marker-end="url(#eq-arr-m)"/>
+            <text x="72" y="64" font-size="11" fill="#8833cc" font-style="italic">M</text>
+
+            <!-- Momento M+dM na seção direita (arco roxo) -->
+            <path d="M 322,80 A 14,14 0 0,1 338,66"
+              stroke="#8833cc" stroke-width="2" fill="none"
+              marker-end="url(#eq-arr-m)"/>
+            <text x="336" y="64" font-size="11" fill="#8833cc" font-style="italic">M+dM</text>
+          </svg>
+        </div>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Consequências práticas:</strong>
+          <ul style="margin:0.5rem 0 0 1rem; line-height:1.9rem;">
+            <li>Se $p(x) = 0$ → $V$ é <strong>constante</strong> e $M$ é <strong>linear</strong></li>
+            <li>Se $p(x) = \text{cte}$ → $V$ é <strong>linear</strong> e $M$ é
+              <strong>parabólico</strong> (2º grau)</li>
+            <li>Se $p(x)$ é linear → $V$ é parabólico e $M$ é <strong>cúbico</strong></li>
+            <li>O momento máximo ocorre onde $V(x) = 0$, pois $\dfrac{dM}{dx} = V$</li>
+          </ul>
+        </blockquote>
+
+        <!-- Tabela resumo -->
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#4f8ef7; color:white;">
+              <th style="padding:10px; border:1px solid #3a7be0;">Tipo de carga $p(x)$</th>
+              <th style="padding:10px; border:1px solid #3a7be0;">Diagrama de $V$</th>
+              <th style="padding:10px; border:1px solid #3a7be0;">Diagrama de $M$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f9fbff;">
+              <td style="padding:9px; border:1px solid #ccd;">Nula ($p = 0$)</td>
+              <td style="padding:9px; border:1px solid #ccd;">Constante (horizontal)</td>
+              <td style="padding:9px; border:1px solid #ccd;">Linear (inclinado)</td>
+            </tr>
+            <tr style="background:#fff;">
+              <td style="padding:9px; border:1px solid #ccd;">Uniforme ($p = \text{cte}$)</td>
+              <td style="padding:9px; border:1px solid #ccd;">Linear</td>
+              <td style="padding:9px; border:1px solid #ccd;">Parabólico (2º grau)</td>
+            </tr>
+            <tr style="background:#f9fbff;">
+              <td style="padding:9px; border:1px solid #ccd;">Linear ($p = ax + b$)</td>
+              <td style="padding:9px; border:1px solid #ccd;">Parabólico</td>
+              <td style="padding:9px; border:1px solid #ccd;">Cúbico (3º grau)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-1', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-1')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-1"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.2 — Traçado dos Diagramas por Trechos   -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-2" data-topic-id="cap6-2" data-chapter="6">
+        <h3 class="topic-title">6.2 — Traçado dos Diagramas de Estado por Trechos</h3>
+
+        <p>
+          O método por trechos constrói os diagramas de $N$, $V$ e $M$ a partir dos valores
+          nas <strong>seções extremas de cada trecho</strong>, aproveitando as formas de curva
+          já conhecidas pelas equações diferenciais.
+        </p>
+
+        <!-- Passo a passo -->
+        <div style="margin:1.25rem 0;">
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+
+            <div style="flex:1; min-width:180px; background:#f0f4ff; border-radius:8px;
+              padding:1rem; border-left:4px solid #4f8ef7;">
+              <p style="font-weight:bold; color:#1a4eb5; margin:0 0 0.4rem;">Passo 1</p>
+              <p style="font-size:0.9rem; margin:0;">
+                Calcular as <strong>reações de apoio</strong> pelas equações da estática
+                ($\sum F = 0$, $\sum M = 0$)
+              </p>
+            </div>
+
+            <div style="flex:1; min-width:180px; background:#f0fff4; border-radius:8px;
+              padding:1rem; border-left:4px solid #228833;">
+              <p style="font-weight:bold; color:#1a6630; margin:0 0 0.4rem;">Passo 2</p>
+              <p style="font-size:0.9rem; margin:0;">
+                Dividir a barra em <strong>trechos</strong>: pontos de carga concentrada,
+                início/fim de carga distribuída, articulações e apoios
+              </p>
+            </div>
+
+            <div style="flex:1; min-width:180px; background:#fffaf0; border-radius:8px;
+              padding:1rem; border-left:4px solid #f7a84f;">
+              <p style="font-weight:bold; color:#a05000; margin:0 0 0.4rem;">Passo 3</p>
+              <p style="font-size:0.9rem; margin:0;">
+                Calcular esforços nas <strong>seções extremas</strong> pelo Teorema do Corte
+              </p>
+            </div>
+
+            <div style="flex:1; min-width:180px; background:#fdf5ff; border-radius:8px;
+              padding:1rem; border-left:4px solid #8833cc;">
+              <p style="font-weight:bold; color:#6611aa; margin:0 0 0.4rem;">Passo 4</p>
+              <p style="font-size:0.9rem; margin:0;">
+                Traçar os diagramas com a <strong>forma correta</strong> da curva em
+                cada trecho (constante, linear, parabólica)
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SVG — Viga biapoiada com carga uniforme + diagramas V e M -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Exemplo: viga simplesmente apoiada com carga uniforme $p$ — diagramas de $V$ e $M$</em>
+          </p>
+          <svg width="440" height="330" viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="d2-arr-u" markerWidth="7" markerHeight="7"
+                refX="3.5" refY="7" orient="auto">
+                <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="d2-p-d" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+              <marker id="d2-arr-r" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#228833"/>
+              </marker>
+            </defs>
+
+            <!-- === VIGA === -->
+            <rect x="50" y="72" width="340" height="16" rx="2"
+              fill="#ccc" stroke="#555" stroke-width="2"/>
+
+            <!-- Carga distribuída p -->
+            <line x1="50" y1="42" x2="390" y2="42" stroke="#1a6ef5" stroke-width="2"/>
+            <line x1="80"  y1="42" x2="80"  y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="120" y1="42" x2="120" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="160" y1="42" x2="160" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="200" y1="42" x2="200" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="240" y1="42" x2="240" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="280" y1="42" x2="280" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="320" y1="42" x2="320" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <line x1="360" y1="42" x2="360" y2="70" stroke="#1a6ef5" stroke-width="1.5" marker-end="url(#d2-p-d)"/>
+            <text x="394" y="46" font-size="12" fill="#1a6ef5" font-style="italic">p</text>
+
+            <!-- Apoio esquerdo (fixo) -->
+            <polygon points="50,88 30,118 70,118"
+              fill="none" stroke="black" stroke-width="1.8"/>
+            <rect x="18" y="118" width="64" height="7" fill="#ccc" stroke="black" stroke-width="1.5"/>
+            <line x1="18"  y1="125" x2="6"   y2="137" stroke="black" stroke-width="1.2"/>
+            <line x1="30"  y1="125" x2="18"  y2="137" stroke="black" stroke-width="1.2"/>
+            <line x1="42"  y1="125" x2="30"  y2="137" stroke="black" stroke-width="1.2"/>
+            <line x1="54"  y1="125" x2="42"  y2="137" stroke="black" stroke-width="1.2"/>
+            <line x1="66"  y1="125" x2="54"  y2="137" stroke="black" stroke-width="1.2"/>
+            <line x1="78"  y1="125" x2="66"  y2="137" stroke="black" stroke-width="1.2"/>
+
+            <!-- Apoio direito (simples) -->
+            <polygon points="390,88 370,118 410,118"
+              fill="none" stroke="black" stroke-width="1.8"/>
+            <line x1="356" y1="120" x2="424" y2="120" stroke="black" stroke-width="2"/>
+            <line x1="356" y1="120" x2="344" y2="132" stroke="black" stroke-width="1.2"/>
+            <line x1="370" y1="120" x2="358" y2="132" stroke="black" stroke-width="1.2"/>
+            <line x1="384" y1="120" x2="372" y2="132" stroke="black" stroke-width="1.2"/>
+            <line x1="398" y1="120" x2="386" y2="132" stroke="black" stroke-width="1.2"/>
+            <line x1="412" y1="120" x2="400" y2="132" stroke="black" stroke-width="1.2"/>
+
+            <!-- Reações -->
+            <line x1="50" y1="155" x2="50" y2="95"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#d2-arr-u)"/>
+            <text x="26" y="154" font-size="11" fill="#e03030" font-style="italic">pℓ/2</text>
+            <line x1="390" y1="155" x2="390" y2="95"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#d2-arr-u)"/>
+            <text x="394" y="154" font-size="11" fill="#e03030" font-style="italic">pℓ/2</text>
+
+            <!-- === DIAGRAMA V === -->
+            <text x="10" y="185" font-size="12" fill="#e03030" font-weight="bold">V(x)</text>
+            <!-- Linha base -->
+            <line x1="50" y1="195" x2="390" y2="195" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+            <!-- Diagrama V: linear de +pℓ/2 (x=0) a -pℓ/2 (x=ℓ) -->
+            <polygon points="50,175 390,215 390,195 50,195"
+              fill="rgba(230,80,80,0.18)" stroke="none"/>
+            <line x1="50" y1="175" x2="390" y2="215"
+              stroke="#e03030" stroke-width="2.5"/>
+            <line x1="50" y1="175" x2="50" y2="195" stroke="#e03030" stroke-width="2"/>
+            <line x1="390" y1="215" x2="390" y2="195" stroke="#e03030" stroke-width="2"/>
+            <!-- Labels V -->
+            <text x="52" y="172" font-size="11" fill="#e03030" font-style="italic">+pℓ/2</text>
+            <text x="354" y="228" font-size="11" fill="#e03030" font-style="italic">−pℓ/2</text>
+            <!-- V=0 no meio -->
+            <line x1="220" y1="188" x2="220" y2="202" stroke="#e03030" stroke-width="1.5"/>
+            <text x="222" y="188" font-size="10" fill="#e03030">0</text>
+
+            <!-- === DIAGRAMA M === -->
+            <text x="10" y="255" font-size="12" fill="#8833cc" font-weight="bold">M(x)</text>
+            <!-- Linha base -->
+            <line x1="50" y1="260" x2="390" y2="260" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+            <!-- Parábola M: M(x) = pℓx/2 - px²/2, máx no centro = pℓ²/8 -->
+            <path d="M 50,260 Q 220,228 390,260"
+              stroke="#8833cc" stroke-width="2.5" fill="rgba(136,51,204,0.12)"/>
+            <line x1="50" y1="260" x2="390" y2="260" stroke="#8833cc" stroke-width="1.5"/>
+            <!-- Label Mmax -->
+            <line x1="220" y1="228" x2="220" y2="260" stroke="#8833cc" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <text x="224" y="244" font-size="11" fill="#8833cc" font-style="italic">pℓ²/8</text>
+            <text x="200" y="276" font-size="11" fill="#8833cc">Máximo em x = ℓ/2</text>
+          </svg>
+        </div>
+
+        <blockquote style="border-left:4px solid #e05252; padding:0.75rem 1rem;
+          background:#fff5f5; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Regras de descontinuidade:</strong>
+          <ul style="margin:0.5rem 0 0 1rem; line-height:1.9rem;">
+            <li><strong>Diagrama de N:</strong> salta com a componente axial de forças concentradas</li>
+            <li><strong>Diagrama de V:</strong> salta (descontinuidade) com forças transversais concentradas,
+              com valor igual à força aplicada</li>
+            <li><strong>Diagrama de M:</strong> salta com momentos concentrados aplicados; é
+              <em>contínuo</em> onde há apenas forças (sem momentos concentrados)</li>
+            <li>O diagrama de $M$ é traçado no <strong>lado tracionado</strong> da barra</li>
+          </ul>
+        </blockquote>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Construção gráfica da parábola:</strong> Para carga uniforme, liga-se
+          $M_A$ a $M_B$ com linha tracejada e marca-se, perpendicularmente ao eixo, um ponto
+          no meio do trecho distante $p\ell^2/8$ dessa linha, no sentido de $p$.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-2', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-2')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-2"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.3 — Carga Distribuída em Barras Inclinadas -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-3" data-topic-id="cap6-3" data-chapter="6">
+        <h3 class="topic-title">6.3 — Carregamento Distribuído em Barras Inclinadas</h3>
+
+        <p>
+          Quando uma barra é inclinada de ângulo $\theta$ em relação à horizontal e submetida
+          a uma carga distribuída vertical de intensidade $p$, é necessário <strong>decompor
+          a carga nas direções axial e transversal à barra</strong>:
+        </p>
+
+        <div style="background:#f5f8ff; border:1px solid #c5d8fa; border-radius:8px;
+          padding:1.25rem; margin:1.25rem 0; text-align:center;">
+          $$p_\perp = p\cos\theta \qquad \text{(transversal à barra)}$$
+          $$p_\parallel = p\sin\theta \qquad \text{(axial à barra)}$$
+        </div>
+
+        <!-- SVG — Barra inclinada com decomposição de carga -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Decomposição da carga distribuída em barra inclinada de ângulo θ</em>
+          </p>
+          <svg width="380" height="230" viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="inc-arr-blue" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+              </marker>
+              <marker id="inc-arr-red" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="inc-arr-grn" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#228833"/>
+              </marker>
+              <marker id="inc-p-d" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Barra inclinada -->
+            <line x1="40" y1="190" x2="320" y2="60"
+              stroke="#555" stroke-width="10" stroke-linecap="round"/>
+
+            <!-- Eixo horizontal de referência (tracejado) -->
+            <line x1="40" y1="190" x2="200" y2="190"
+              stroke="#999" stroke-width="1.2" stroke-dasharray="5,4"/>
+            <!-- Ângulo theta -->
+            <path d="M 100,190 A 60,60 0 0,0 76,162"
+              stroke="#555" stroke-width="1.5" fill="none"/>
+            <text x="105" y="183" font-size="13" fill="#555" font-style="italic">θ</text>
+
+            <!-- Cargas verticais p (azul) sobre a barra -->
+            <line x1="100" y1="100" x2="100" y2="145"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#inc-p-d)"/>
+            <line x1="140" y1="82"  x2="140" y2="127"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#inc-p-d)"/>
+            <line x1="180" y1="65"  x2="180" y2="110"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#inc-p-d)"/>
+            <line x1="220" y1="48"  x2="220" y2="93"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#inc-p-d)"/>
+            <!-- Linha topo das cargas -->
+            <line x1="90" y1="100" x2="228" y2="48" stroke="#1a6ef5" stroke-width="1.8"/>
+            <text x="234" y="48" font-size="12" fill="#1a6ef5" font-style="italic">p</text>
+
+            <!-- Seta componente transversal p⊥ (vermelha — perpendicular à barra) -->
+            <line x1="180" y1="88" x2="204" y2="114"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#inc-arr-red)"/>
+            <text x="206" y="116" font-size="11" fill="#e03030" font-style="italic">
+              p·cosθ
+            </text>
+
+            <!-- Seta componente axial p∥ (verde — ao longo da barra) -->
+            <line x1="180" y1="88" x2="158" y2="99"
+              stroke="#228833" stroke-width="2.2" marker-end="url(#inc-arr-grn)"/>
+            <text x="118" y="95" font-size="11" fill="#228833" font-style="italic">
+              p·sinθ
+            </text>
+
+            <!-- Legenda -->
+            <rect x="260" y="140" width="112" height="74" rx="6"
+              fill="#f9fbff" stroke="#ccd" stroke-width="1.2"/>
+            <line x1="272" y1="157" x2="292" y2="157"
+              stroke="#1a6ef5" stroke-width="2"/>
+            <text x="296" y="161" font-size="10" fill="#1a6ef5">Carga $p$ (vertical)</text>
+            <line x1="272" y1="177" x2="292" y2="177"
+              stroke="#e03030" stroke-width="2"/>
+            <text x="296" y="181" font-size="10" fill="#e03030">$p_\perp$ (transversal)</text>
+            <line x1="272" y1="197" x2="292" y2="197"
+              stroke="#228833" stroke-width="2"/>
+            <text x="296" y="201" font-size="10" fill="#228833">$p_\parallel$ (axial)</text>
+          </svg>
+        </div>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Diferença em relação à barra horizontal:</strong> em barras inclinadas,
+          a componente axial $p_\parallel = p\sin\theta$ faz com que o esforço normal $N$
+          também <strong>varie ao longo do trecho</strong> — ao contrário da barra horizontal,
+          onde $N$ é constante quando não há carga axial. As equações diferenciais de equilíbrio
+          são aplicadas nas <em>coordenadas locais</em> da barra.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-3', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-3')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-3"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.4 — Barras Curvas                        -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-4" data-topic-id="cap6-4" data-chapter="6">
+        <h3 class="topic-title">6.4 — Barras Curvas</h3>
+
+        <p>
+          Em barras curvas (arcos), o eixo longitudinal não é reto: a seção transversal
+          <strong>muda de orientação</strong> ao longo da barra. Utiliza-se um ângulo $\alpha$
+          como coordenada, medido a partir de uma referência.
+        </p>
+
+        <p>Os esforços numa seção de ângulo $\alpha$ são determinados pelo
+          <strong>Teorema do Corte</strong> — isola-se uma parte do arco e aplica-se equilíbrio,
+          projetando as forças externas nas direções <em>tangente</em> e <em>normal</em> ao eixo
+          da barra:
+        </p>
+
+        <div style="background:#f5f8ff; border:1px solid #c5d8fa; border-radius:8px;
+          padding:1.25rem; margin:1.25rem 0;">
+          <p style="text-align:center; margin:0 0 0.5rem;">
+            $$N(\alpha) = \text{resultante das forças externas na direção tangente}$$
+            $$V(\alpha) = \text{resultante das forças externas na direção normal}$$
+            $$M(\alpha) = \text{momento das forças externas em relação ao ponto da seção}$$
+          </p>
+        </div>
+
+        <!-- SVG — Arco semicircular com corte e esforços -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Arco de raio $R$ — corte na seção de ângulo $\alpha$ e esforços resultantes</em>
+          </p>
+          <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arc-n" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#228833"/>
+              </marker>
+              <marker id="arc-v" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="arc-m" markerWidth="7" markerHeight="7"
+                refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#8833cc"/>
+              </marker>
+              <marker id="arc-load" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Arco semicircular (raio ~90) centrado em (180, 190) -->
+            <path d="M 90,190 A 90,90 0 0,1 270,190"
+              stroke="#555" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+            <!-- Base / apoios -->
+            <line x1="70" y1="190" x2="290" y2="190" stroke="#888" stroke-width="2"/>
+            <!-- Apoio esquerdo -->
+            <polygon points="90,190 74,210 106,210"
+              fill="none" stroke="black" stroke-width="1.8"/>
+            <line x1="62" y1="212" x2="114" y2="212" stroke="black" stroke-width="2"/>
+            <!-- Apoio direito -->
+            <polygon points="270,190 254,210 286,210"
+              fill="none" stroke="black" stroke-width="1.8"/>
+            <line x1="242" y1="212" x2="294" y2="212" stroke="black" stroke-width="2"/>
+
+            <!-- Carga vertical no topo -->
+            <line x1="180" y1="65" x2="180" y2="98"
+              stroke="#1a6ef5" stroke-width="2.5" marker-end="url(#arc-load)"/>
+            <text x="186" y="72" font-size="12" fill="#1a6ef5" font-weight="bold">P</text>
+
+            <!-- Ponto de corte — ângulo α ≈ 50° do apoio esquerdo -->
+            <!-- Posição na curva: x = 90 + 90·cos(130°) ≈ 32, y = 190 - 90·sin(130°) ≈ 121 -->
+            <circle cx="148" cy="121" r="5" fill="#e05252"/>
+
+            <!-- Ângulo α indicado no centro do arco -->
+            <path d="M 180,190 A 50,50 0 0,0 148,148"
+              stroke="#555" stroke-width="1.2" fill="none" stroke-dasharray="4,3"/>
+            <text x="182" y="165" font-size="12" fill="#555" font-style="italic">α</text>
+
+            <!-- Tangente na seção (orientação ≈ 40° da horizontal) -->
+            <!-- N — ao longo da tangente (saindo da seção, sentido da curva) -->
+            <line x1="148" y1="121" x2="118" y2="100"
+              stroke="#228833" stroke-width="2.2" marker-end="url(#arc-n)"/>
+            <text x="100" y="98" font-size="11" fill="#228833" font-style="italic">N</text>
+
+            <!-- V — normal à tangente (perpendicular, para fora) -->
+            <line x1="148" y1="121" x2="128" y2="148"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#arc-v)"/>
+            <text x="112" y="155" font-size="11" fill="#e03030" font-style="italic">V</text>
+
+            <!-- M — arco indicando momento -->
+            <path d="M 156,108 A 14,14 0 0,1 170,120"
+              stroke="#8833cc" stroke-width="2" fill="none"
+              marker-end="url(#arc-m)"/>
+            <text x="170" y="110" font-size="11" fill="#8833cc" font-style="italic">M</text>
+
+            <!-- Rótulo R -->
+            <line x1="180" y1="190" x2="148" y2="121"
+              stroke="#888" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <text x="172" y="155" font-size="11" fill="#888" font-style="italic">R</text>
+          </svg>
+        </div>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Como $N$ e $V$ dependem de $\alpha$:</strong>
+          como a direção da seção muda com $\alpha$, os esforços resultam da combinação das
+          componentes horizontais e verticais das forças externas com $\sin\alpha$ e
+          $\cos\alpha$. O momento fletor máximo é encontrado derivando $M(\alpha)$ em relação
+          a $\alpha$ e igualando a zero — isto é, onde $V(\alpha) = 0$.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-4', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-4')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-4"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.5 — Vigas Poligonais Bidimensionais      -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-5" data-topic-id="cap6-5" data-chapter="6">
+        <h3 class="topic-title">6.5 — Vigas Poligonais Bidimensionais</h3>
+
+        <p>
+          Vigas poligonais são estruturas formadas por barras retas conectadas rigidamente
+          em ângulos, formando uma estrutura plana não-retilínea — pórticos em L, em U,
+          quadros, etc. A particularidade fundamental é que, <strong>ao mudar de direção
+          no nó rígido, o que era força normal numa barra pode virar força cortante na
+          barra seguinte, e vice-versa</strong>.
+        </p>
+
+        <!-- SVG — Pórtico em L com diagramas esquemáticos -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Pórtico em L: transmissão dos esforços no nó rígido</em>
+          </p>
+          <svg width="380" height="260" viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="pol-arr-u" markerWidth="7" markerHeight="7"
+                refX="3.5" refY="7" orient="auto">
+                <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="pol-arr-r" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+              </marker>
+              <marker id="pol-load" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Parede esquerda (engaste) -->
+            <rect x="10" y="40" width="28" height="180" fill="#ddd"/>
+            <line x1="38" y1="40" x2="38" y2="220" stroke="black" stroke-width="2.5"/>
+            <line x1="38" y1="55"  x2="18" y2="75"  stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="80"  x2="18" y2="100" stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="105" x2="18" y2="125" stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="130" x2="18" y2="150" stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="155" x2="18" y2="175" stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="180" x2="18" y2="200" stroke="black" stroke-width="1.4"/>
+            <line x1="38" y1="205" x2="18" y2="225" stroke="black" stroke-width="1.4"/>
+
+            <!-- Pilar vertical (barra A) -->
+            <rect x="38" y="80" width="16" height="140" rx="2"
+              fill="#bbb" stroke="#555" stroke-width="2"/>
+            <text x="56" y="155" font-size="11" fill="#555" font-weight="bold">A</text>
+
+            <!-- Viga horizontal (barra B) — nó no topo do pilar -->
+            <rect x="54" y="80" width="200" height="16" rx="2"
+              fill="#bbb" stroke="#555" stroke-width="2"/>
+            <text x="148" y="74" font-size="11" fill="#555" font-weight="bold">B</text>
+
+            <!-- Nó rígido destacado -->
+            <circle cx="54" cy="88" r="9" fill="#f7a84f" stroke="#a05000" stroke-width="2"/>
+            <text x="64" y="108" font-size="10" fill="#a05000" font-weight="bold">nó rígido</text>
+
+            <!-- Carga P na ponta direita da viga -->
+            <line x1="254" y1="56" x2="254" y2="78"
+              stroke="#1a6ef5" stroke-width="2.5" marker-end="url(#pol-load)"/>
+            <text x="260" y="64" font-size="12" fill="#1a6ef5" font-weight="bold">P</text>
+
+            <!-- Carga H no topo do pilar (horizontal) -->
+            <line x1="100" y1="88" x2="60" y2="88"
+              stroke="#e03030" stroke-width="2.5" marker-end="url(#pol-arr-r)"/>
+            <text x="102" y="86" font-size="12" fill="#e03030" font-weight="bold">H</text>
+
+            <!-- Setas indicando N→V no nó -->
+            <text x="190" y="145" font-size="11" fill="#8833cc" font-style="italic">
+              N (barra B) →
+            </text>
+            <text x="188" y="160" font-size="11" fill="#8833cc" font-style="italic">
+              vira V (barra A)
+            </text>
+            <path d="M 186,140 Q 100,140 68,110"
+              stroke="#8833cc" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+
+            <!-- Diagrama de M esquemático na barra A -->
+            <polygon points="38,88 38,220 22,220"
+              fill="rgba(136,51,204,0.2)" stroke="#8833cc" stroke-width="1.5"/>
+            <text x="5" y="175" font-size="10" fill="#8833cc" font-style="italic"
+              transform="rotate(-90,14,175)">M(A)</text>
+
+            <!-- Diagrama de M esquemático na barra B -->
+            <polygon points="54,80 254,80 254,96 54,96"
+              fill="rgba(136,51,204,0.2)" stroke="#8833cc" stroke-width="1.5"/>
+            <text x="148" y="112" font-size="10" fill="#8833cc" font-style="italic">M(B)</text>
+          </svg>
+        </div>
+
+        <!-- Procedimento -->
+        <p><strong>Procedimento de análise:</strong></p>
+        <ol style="line-height:2rem; padding-left:1.4rem;">
+          <li>
+            Calcular as reações de apoio pela estática
+            ($\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$).
+            Atenção: forças <strong>horizontais</strong> nos apoios devem ser consideradas.
+          </li>
+          <li>
+            Percorrer a estrutura <strong>trecho a trecho</strong>, iniciando de uma
+            extremidade livre ou de um apoio conhecido.
+          </li>
+          <li>
+            <strong>Transferir os esforços</strong> de uma seção para a seguinte. Ao mudar
+            de direção no nó rígido, $N$ e $V$ trocam de papel conforme a direção da barra muda.
+          </li>
+          <li>
+            Traçar os diagramas em cada trecho, <strong>respeitando os eixos locais</strong>
+            de cada barra.
+          </li>
+        </ol>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>No nó rígido:</strong> o momento fletor é <em>contínuo</em> (não há
+          salto), mas $N$ e $V$ trocam de papel. Equilíbrio de forças e momentos é
+          satisfeito automaticamente.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-5', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-5')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-5"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.6 — Pórticos e Quadros Tri-Articulados   -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-6" data-topic-id="cap6-6" data-chapter="6">
+        <h3 class="topic-title">6.6 — Pórticos e Quadros Tri-Articulados</h3>
+
+        <p>
+          Pórticos tri-articulados são estruturas com <strong>três articulações</strong>
+          internas, tornando-as isostáticas mesmo com geometria fechada. A articulação central
+          introduz a condição adicional de <strong>momento fletor nulo</strong> nesse ponto,
+          que é usada juntamente com as 3 equações de equilíbrio global para determinar as
+          4 reações de apoio.
+        </p>
+
+        <!-- SVG — Pórtico tri-articulado -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Quadro tri-articulado: articulações nos apoios (A e B) e na cumeeira (C)</em>
+          </p>
+          <svg width="400" height="260" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="tri-arr-u" markerWidth="7" markerHeight="7"
+                refX="3.5" refY="7" orient="auto">
+                <path d="M0,7 L3.5,0 L7,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="tri-arr-r" markerWidth="7" markerHeight="7"
+                refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+              </marker>
+              <marker id="tri-load" markerWidth="6" markerHeight="6"
+                refX="3" refY="0" orient="auto">
+                <path d="M0,0 L3,6 L6,0 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Pilar esquerdo A→C' -->
+            <line x1="80" y1="210" x2="200" y2="80"
+              stroke="#555" stroke-width="10" stroke-linecap="round"/>
+            <!-- Pilar direito B→C' -->
+            <line x1="320" y1="210" x2="200" y2="80"
+              stroke="#555" stroke-width="10" stroke-linecap="round"/>
+
+            <!-- Articulação C (cumeeira) -->
+            <circle cx="200" cy="80" r="9" fill="white" stroke="#8833cc" stroke-width="2.5"/>
+            <text x="206" y="70" font-size="12" fill="#8833cc" font-weight="bold">C</text>
+            <text x="196" y="74" font-size="9" fill="#8833cc">M=0</text>
+
+            <!-- Apoio A (articulado fixo) -->
+            <circle cx="80" cy="210" r="7" fill="white" stroke="black" stroke-width="2"/>
+            <polygon points="80,217 58,244 102,244"
+              fill="none" stroke="black" stroke-width="2"/>
+            <rect x="46" y="244" width="68" height="7"
+              fill="#ccc" stroke="black" stroke-width="1.5"/>
+            <line x1="46"  y1="251" x2="32"  y2="263" stroke="black" stroke-width="1.2"/>
+            <line x1="60"  y1="251" x2="46"  y2="263" stroke="black" stroke-width="1.2"/>
+            <line x1="74"  y1="251" x2="60"  y2="263" stroke="black" stroke-width="1.2"/>
+            <line x1="88"  y1="251" x2="74"  y2="263" stroke="black" stroke-width="1.2"/>
+            <line x1="102" y1="251" x2="88"  y2="263" stroke="black" stroke-width="1.2"/>
+            <line x1="114" y1="251" x2="100" y2="263" stroke="black" stroke-width="1.2"/>
+            <text x="60" y="207" font-size="12" fill="#555" font-weight="bold">A</text>
+
+            <!-- Apoio B (articulado simples) -->
+            <circle cx="320" cy="210" r="7" fill="white" stroke="black" stroke-width="2"/>
+            <polygon points="320,217 298,244 342,244"
+              fill="none" stroke="black" stroke-width="2"/>
+            <line x1="284" y1="246" x2="356" y2="246" stroke="black" stroke-width="2"/>
+            <line x1="284" y1="246" x2="272" y2="258" stroke="black" stroke-width="1.2"/>
+            <line x1="298" y1="246" x2="286" y2="258" stroke="black" stroke-width="1.2"/>
+            <line x1="312" y1="246" x2="300" y2="258" stroke="black" stroke-width="1.2"/>
+            <line x1="326" y1="246" x2="314" y2="258" stroke="black" stroke-width="1.2"/>
+            <line x1="340" y1="246" x2="328" y2="258" stroke="black" stroke-width="1.2"/>
+            <line x1="354" y1="246" x2="342" y2="258" stroke="black" stroke-width="1.2"/>
+            <text x="326" y="207" font-size="12" fill="#555" font-weight="bold">B</text>
+
+            <!-- Carga distribuída na barra esquerda -->
+            <line x1="108" y1="155" x2="122" y2="168"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#tri-load)"/>
+            <line x1="126" y1="136" x2="140" y2="149"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#tri-load)"/>
+            <line x1="144" y1="117" x2="158" y2="130"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#tri-load)"/>
+            <line x1="162" y1="98"  x2="176" y2="111"
+              stroke="#1a6ef5" stroke-width="1.8" marker-end="url(#tri-load)"/>
+            <text x="100" y="135" font-size="11" fill="#1a6ef5" font-style="italic">p</text>
+
+            <!-- Reações -->
+            <line x1="80" y1="248" x2="80" y2="220"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#tri-arr-u)"/>
+            <text x="58" y="248" font-size="10" fill="#e03030" font-style="italic">RAy</text>
+            <line x1="50" y1="210" x2="72" y2="210"
+              stroke="#1a6ef5" stroke-width="2.2" marker-end="url(#tri-arr-r)"/>
+            <text x="36" y="208" font-size="10" fill="#1a6ef5" font-style="italic">RAx</text>
+            <line x1="320" y1="248" x2="320" y2="220"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#tri-arr-u)"/>
+            <text x="324" y="248" font-size="10" fill="#e03030" font-style="italic">RBy</text>
+          </svg>
+        </div>
+
+        <!-- Procedimento -->
+        <p><strong>Procedimento de resolução:</strong></p>
+        <ol style="line-height:2rem; padding-left:1.4rem;">
+          <li>
+            Escrever as 3 equações de equilíbrio global
+            ($\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$) → 3 equações para 4 incógnitas.
+          </li>
+          <li>
+            Aplicar a <strong>condição de momento nulo na articulação C</strong>: isola-se
+            metade da estrutura e impõe-se $\sum M = 0$ em relação a $C$ → 4ª equação.
+          </li>
+          <li>
+            Com as 4 reações determinadas, percorre-se a estrutura trecho a trecho
+            calculando $N$, $V$ e $M$ em cada seção, como nas vigas poligonais.
+          </li>
+        </ol>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Característica marcante:</strong> por ser uma estrutura fechada,
+          os pilares têm <em>esforço normal significativo</em> (compressão) e as vigas têm
+          flexão. O momento fletor é nulo nas três articulações por definição.
+        </blockquote>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-6', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-6')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-6"></div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- TÓPICO 6.7 — Vigas Poligonais Tridimensionais     -->
+      <!-- ================================================= -->
+      <section class="topic" id="topic-cap6-7" data-topic-id="cap6-7" data-chapter="6">
+        <h3 class="topic-title">6.7 — Vigas Poligonais Tridimensionais</h3>
+
+        <p>
+          Nas estruturas tridimensionais, cada seção transversal possui
+          <strong>6 esforços solicitantes</strong>:
+        </p>
+
+        <!-- Tabela dos 6 esforços -->
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0; text-align:center;">
+          <thead>
+            <tr style="background:#4f8ef7; color:white;">
+              <th style="padding:10px; border:1px solid #3a7be0;">Esforço</th>
+              <th style="padding:10px; border:1px solid #3a7be0;">Símbolo</th>
+              <th style="padding:10px; border:1px solid #3a7be0;">Descrição</th>
+              <th style="padding:10px; border:1px solid #3a7be0;">Diagrama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f9fbff;">
+              <td style="padding:9px; border:1px solid #ccd;">Força Normal</td>
+              <td style="padding:9px; border:1px solid #ccd;">$N$</td>
+              <td style="padding:9px; border:1px solid #ccd;">Ao longo do eixo da barra</td>
+              <td style="padding:9px; border:1px solid #ccd;">Com sinal indicado</td>
+            </tr>
+            <tr style="background:#fff;">
+              <td style="padding:9px; border:1px solid #ccd;">Forças Cortantes</td>
+              <td style="padding:9px; border:1px solid #ccd;">$V_y$, $V_z$</td>
+              <td style="padding:9px; border:1px solid #ccd;">Transversais nos planos xz e xy</td>
+              <td style="padding:9px; border:1px solid #ccd;">Com sinal indicado</td>
+            </tr>
+            <tr style="background:#f9fbff;">
+              <td style="padding:9px; border:1px solid #ccd;">Momento Torçor</td>
+              <td style="padding:9px; border:1px solid #ccd;">$M_T$</td>
+              <td style="padding:9px; border:1px solid #ccd;">Em torno do eixo da barra</td>
+              <td style="padding:9px; border:1px solid #ccd;">Com sinal indicado</td>
+            </tr>
+            <tr style="background:#fff;">
+              <td style="padding:9px; border:1px solid #ccd;">Momentos Fletores</td>
+              <td style="padding:9px; border:1px solid #ccd;">$M_y$, $M_z$</td>
+              <td style="padding:9px; border:1px solid #ccd;">Em torno dos eixos y e z</td>
+              <td style="padding:9px; border:1px solid #ccd;">No lado tracionado</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- SVG — perspectiva de barra 3D com os 6 esforços -->
+        <div style="text-align:center; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.5rem;">
+            <em>Seção transversal 3D com os 6 esforços solicitantes</em>
+          </p>
+          <svg width="380" height="240" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="t3-n"  markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#228833"/>
+              </marker>
+              <marker id="t3-vy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#e03030"/>
+              </marker>
+              <marker id="t3-vz" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#e05252"/>
+              </marker>
+              <marker id="t3-mt" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#c55a00"/>
+              </marker>
+              <marker id="t3-my" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#8833cc"/>
+              </marker>
+              <marker id="t3-mz" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" fill="#1a6ef5"/>
+              </marker>
+            </defs>
+
+            <!-- Seção transversal (perspectiva isométrica) -->
+            <!-- Face frontal -->
+            <rect x="130" y="80" width="100" height="90" rx="2"
+              fill="#e8ecf8" stroke="#555" stroke-width="2"/>
+            <!-- Face superior (perspectiva) -->
+            <polygon points="130,80 170,55 270,55 230,80"
+              fill="#d0d8f0" stroke="#555" stroke-width="2"/>
+            <!-- Face lateral direita (perspectiva) -->
+            <polygon points="230,80 270,55 270,145 230,170"
+              fill="#c8d0e8" stroke="#555" stroke-width="2"/>
+
+            <!-- Eixo x (axial, saindo da seção) -->
+            <line x1="180" y1="125" x2="100" y2="125"
+              stroke="#228833" stroke-width="2.5" marker-end="url(#t3-n)"/>
+            <text x="78" y="123" font-size="11" fill="#228833" font-style="italic">N (x)</text>
+
+            <!-- Vy — cortante em y -->
+            <line x1="180" y1="125" x2="180" y2="56"
+              stroke="#e03030" stroke-width="2.2" marker-end="url(#t3-vy)"/>
+            <text x="184" y="52" font-size="11" fill="#e03030" font-style="italic">Vy</text>
+
+            <!-- Vz — cortante em z -->
+            <line x1="180" y1="125" x2="248" y2="90"
+              stroke="#e05252" stroke-width="2.2" marker-end="url(#t3-vz)"/>
+            <text x="252" y="88" font-size="11" fill="#e05252" font-style="italic">Vz</text>
+
+            <!-- MT — torsor em x (arco ao redor do eixo axial) -->
+            <path d="M 158,108 A 28,28 0 0,1 202,108"
+              stroke="#c55a00" stroke-width="2.2" fill="none"
+              marker-end="url(#t3-mt)"/>
+            <text x="162" y="98" font-size="11" fill="#c55a00" font-style="italic">MT</text>
+
+            <!-- My — momento em y -->
+            <path d="M 164,170 A 22,22 0 0,1 196,170"
+              stroke="#8833cc" stroke-width="2" fill="none"
+              marker-end="url(#t3-my)"/>
+            <text x="168" y="196" font-size="11" fill="#8833cc" font-style="italic">My</text>
+
+            <!-- Mz — momento em z -->
+            <path d="M 118,98 A 22,22 0 0,1 118,132"
+              stroke="#1a6ef5" stroke-width="2" fill="none"
+              marker-end="url(#t3-mz)"/>
+            <text x="88" y="120" font-size="11" fill="#1a6ef5" font-style="italic">Mz</text>
+          </svg>
+        </div>
+
+        <blockquote style="border-left:4px solid #f7a84f; padding:0.75rem 1rem;
+          background:#fffaf0; margin:1.25rem 0; border-radius:4px;">
+          ⚠️ <strong>Transmissão entre trechos 3D:</strong> ao mudar de direção no espaço,
+          os esforços se transformam — um momento fletor num trecho pode virar
+          <em>momento torçor</em> no trecho seguinte, e vice-versa. Usa-se a
+          <strong>regra da mão direita</strong> para definir o sentido dos vetores momento.
+        </blockquote>
+
+        <!-- Procedimento -->
+        <p><strong>Procedimento:</strong></p>
+        <ol style="line-height:2rem; padding-left:1.4rem;">
+          <li>
+            Calcular as reações de apoio pelas <strong>6 equações de equilíbrio 3D</strong>:
+            $\sum F_x = 0$, $\sum F_y = 0$, $\sum F_z = 0$,
+            $\sum M_x = 0$, $\sum M_y = 0$, $\sum M_z = 0$.
+          </li>
+          <li>
+            Percorrer a estrutura de uma extremidade livre, calculando os esforços nas
+            seções extremas de cada trecho.
+          </li>
+          <li>
+            Traçar os diagramas de $N$, $V_y$, $V_z$, $M_T$, $M_y$, $M_z$ nos
+            <strong>planos apropriados</strong> de cada trecho.
+          </li>
+        </ol>
+
+        <blockquote style="border-left:4px solid #4f8ef7; padding:0.75rem 1rem;
+          background:#f5f8ff; margin:1.25rem 0; border-radius:4px;">
+          💡 <strong>Convenção dos diagramas 3D:</strong>
+          <ul style="margin:0.5rem 0 0 1rem; line-height:1.9rem;">
+            <li>Diagramas de $V$ e $M$ são traçados nos planos em que as componentes atuam</li>
+            <li>Diagramas de $M$ são sempre no <strong>lado tracionado</strong></li>
+            <li>$N$, $V$ e $M_T$ têm sinais indicados nos diagramas</li>
+            <li>$M_y$ e $M_z$ omitem sinal — desenha-se no lado tracionado</li>
+          </ul>
+        </blockquote>
+
+        <!-- NAVEGAÇÃO -->
+        <div class="chapter-nav">
+          <a href="cap5.html" class="btn-nav">← Capítulo Anterior</a>
+          <a href="cap7.html" class="btn-nav">Próximo Capítulo →</a>
+        </div>
+
+        <div class="topic-actions">
+          <button class="btn-complete" onclick="toggleTopic('cap6-7', this)">
+            ✅ Marcar como Concluído
+          </button>
+          <button class="btn-quiz" onclick="generateQuiz('cap6-7')" style="display:none;">
+            🧠 Testar meu Conhecimento
+          </button>
+        </div>
+        <div class="quiz-area" id="quiz-cap6-7"></div>
+      </section>
+
+    </article>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Apostila Inteligente de PEF — Universidade de São Paulo</p>
+  </footer>
+
+  <script src="js/progress.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
